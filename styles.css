@@ -1,0 +1,492 @@
+/* Reset und Grundstyle */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Grundlayout */
+body, html {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    background-color: #000;
+    color: #0f0;
+    line-height: 1.6;
+    overflow-x: hidden;
+    font-size: 16px; /* Basis-Schriftgröße */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+@media screen and (max-width: 768px) {
+    body, html {
+        font-size: 14px; /* Kleinere Schriftgröße für Mobilgeräte */
+    }
+}
+
+/* Header */
+.header {
+    background-color: #1a1a1a;
+    padding: 1rem 0;
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Stellt sicher, dass der Header über anderen Elementen liegt */
+    text-align: center;
+    animation: fadeInDown 1.5s ease-out;
+    transition: transform 0.3s ease-in-out; /* Animation für das Ein- und Ausblenden */
+}
+
+/* Titel */
+.title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 2rem; /* Angepasste Größe */
+    color: #0f0;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    animation: glitch 1s infinite;
+    margin-bottom: 1rem; /* Abstand zur Navbar */
+}
+
+/* Glitch Animation */
+@keyframes glitch {
+    0% {
+        text-shadow: 1px 1px 0 red, -1px -1px 0 blue, 0 0 10px green;
+        transform: translateX(2px);
+    }
+    20% {
+        text-shadow: -1px -1px 0 red, 1px 1px 0 blue, 0 0 10px green;
+        transform: translateX(-2px);
+    }
+    40% {
+        text-shadow: 1px 1px 0 red, -1px -1px 0 blue, 0 0 10px green;
+        transform: translateX(3px);
+    }
+    60% {
+        text-shadow: -1px -1px 0 red, 1px 1px 0 blue, 0 0 10px green;
+        transform: translateX(-3px);
+    }
+    80% {
+        text-shadow: 1px 1px 0 red, -1px -1px 0 blue, 0 0 10px green;
+        transform: translateX(2px);
+    }
+    100% {
+        text-shadow: -1px -1px 0 red, 1px 1px 0 blue, 0 0 10px green;
+        transform: translateX(-2px);
+    }
+}
+
+/* Navbar */
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /* Abstand zwischen den Links */
+    margin-right: 5px;
+    flex-wrap: wrap; /* Elemente umbrechen, wenn der Platz knapp wird */
+}
+
+/* Navbar-Links */
+.navbar ul li a, #theme-toggle, input {
+    background-color: transparent;
+    color: #0f0;
+    border: 0.2rem solid #0f0;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-size: 1rem; /* Standardgröße für Navbar-Elemente */
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    margin: 0 0.5rem;
+    white-space: nowrap; /* Verhindert Zeilenumbrüche in den Links */
+}
+
+.navbar ul li a:hover, #theme-toggle:hover {
+    color: #ff0;
+    border-color: #ff0;
+    text-decoration: underline;
+}
+
+/* Suchleiste in der Navbar */
+.navbar .search-container {
+    position: relative;
+    display: inline-block;
+}
+
+#searchInput {
+    width: 12rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+    background-color: transparent;
+    color: #0f0;
+    border: 0.2rem solid #0f0;
+    border-radius: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.3s;
+    margin-left: 23px;
+}
+
+#resultsList {
+    position: absolute;
+    top: 100%; /* Direkt unter der Suchleiste */
+    left: 0;
+    width: 100%; /* Gleiche Breite wie die Suchleiste */
+    max-height: 200px; /* Maximale Höhe für Scrollen */
+    overflow-y: auto; /* Scrollen aktivieren */
+    background-color: #1a1a1a; /* Hintergrundfarbe */
+    border: 0.2rem solid #0f0; /* Rahmen */
+    border-radius: 0.5rem; /* Abgerundete Ecken */
+    z-index: 1000; /* Über anderen Elementen */
+    margin-top: 0.5rem; /* Abstand zur Suchleiste */
+    display: none; /* Standardmäßig ausgeblendet */
+    padding: 0; /* Kein Innenabstand */
+    list-style: none; /* Keine Aufzählungszeichen */
+}
+
+#resultsList li {
+    padding: 0.5rem;
+    color: #0f0;
+    font-family: 'Share Tech Mono', monospace;
+    cursor: pointer; /* Zeigt an, dass die Elemente klickbar sind */
+    transition: background-color 0.3s;
+}
+
+#resultsList li:hover {
+    background-color: #333; /* Hover-Effekt */
+}
+
+/* Blog-Sektionen */
+.Introduction {
+    margin-top: 5vh; /* Mehr Abstand zum Header */
+    margin-bottom: 38vh; /* Mehr Abstand zum Footer */
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Blog-Sektionen */
+.blog-section {
+    margin-top: 1.5vh; /* Mehr Abstand zum Header */
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Blog-Sektionen */
+.forum-section {
+    margin-top: 5vh; /* Mehr Abstand zum Header */
+    margin-bottom: 6vh;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1s ease-out;
+}
+
+.intropost {
+    background-color: #2a2d33;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 2rem; /* Mehr Abstand zwischen den Posts */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+.intropost h2 {
+    font-size: 1.5rem;
+    color: #0f0;
+}
+
+.intropost .content {
+    font-size: 1.1rem;
+    color: #ddd;
+}
+
+.blog-post {
+    background-color: #2a2d33;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 4rem; /* Mehr Abstand zwischen den Posts */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+.forum-post {
+    background-color: #2a2d33;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 2rem; /* Mehr Abstand zwischen den Posts */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+
+.blog-post h2 {
+    font-size: 1.5rem;
+    color: #0f0;
+}
+
+.blog-post .date {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+.blog-post .content {
+    font-size: 1.1rem;
+    color: #ddd;
+}
+
+/* Footer */
+.footer {
+    background-color: #1a1a1a;
+    color: #bbb;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Scroll-to-Top Button */
+.scroll-btn {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: #0f0;
+    color: black;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: none;
+    transition: transform 0.3s ease;
+}
+
+.scroll-btn:hover {
+    transform: scale(1.2);
+}
+
+textarea {
+    background-color: transparent;
+    color: #0f0;
+    opacity: 1 !important;
+    border: 2px solid #0f0;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: left;
+    height: auto;
+    width: 100%;
+}
+
+textarea:hover {
+    color: #ff0;
+    border-color: #ff0;
+    text-decoration: underline;
+}
+
+button.comment-button {
+    background-color: transparent;
+    color: #0f0;
+    margin-left: 0px;
+    margin-top: 1rem;
+    opacity: 1 !important;
+    border: 2px solid #0f0;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    margin-right: 5px;
+    margin-bottom: 1rem;
+}
+
+button:hover {
+    color: #ff0;
+    border-color: #ff0;
+    text-decoration: underline;
+}
+
+/* Filter-Optionen */
+.filter-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem; /* Mehr Abstand zur Suchleiste */
+    margin-bottom: 2rem;
+}
+
+.filter-options button {
+    background-color: transparent;
+    color: #0f0;
+    border: 0.2rem solid #0f0;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.filter-options button:hover {
+    color: #ff0;
+    border-color: #ff0;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Light Mode */
+body.light-mode {
+    background-color: #9e9696;
+    color: #000;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+button {
+    background-color: transparent;
+    color: #0f0;
+    margin-left: 0px;
+    opacity: 1 !important;
+    border: 2px solid #0f0;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: 100%;
+}
+
+button#submit {
+    background-color: transparent;
+    color: #0f0;
+    margin-left: 0px;
+    opacity: 1 !important;
+    margin-top: 1rem;
+    border: 2px solid #0f0;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: 100%;
+}
+
+input#post-title {
+    background-color: transparent;
+    color: #0f0;
+    margin-left: 0px;
+    margin-top: 0.1rem;
+    opacity: 1 !important;
+    border: 2px solid #0f0;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    margin-right: 15px;
+}
+
+input#name {
+    background-color: transparent;
+    color: #0f0;
+    margin-left: 0px;
+    margin-top: 0.1rem;
+    opacity: 1 !important;
+    border: 2px solid #0f0;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    margin-right: 15px;
+}
+
+input#email {
+    background-color: transparent;
+    color: #0f0;
+    margin-left: 0px;
+    margin-top: 0.1rem;
+    opacity: 1 !important;
+    border: 2px solid #0f0;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    margin-right: 15px;
+}

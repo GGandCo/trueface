@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ein Blog über Technik, Hacking, und alles, was mit der digitalen Welt zu tun hat.">
+    <meta name="keywords" content="Tech Blog, Hacking, Sicherheit, Programmierung, Gadgets">
+    <meta property="og:title" content="Tech & Hacker Blog">
+    <meta property="og:description" content="Ein Blog über Technik, Hacking, und alles, was mit der digitalen Welt zu tun hat.">
+    <title>Blog-Posts</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode">
+    <header class="header">
+        <h1 class="title">Tech & Tutorial Blog</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="forum.html">Forum</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+                <li><a href="about.html">Über mich</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle">Wechsel zu Light Mode</button>
+                </li>
+                <li>
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Suche...">
+                        <ul id="resultsList"></ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="blog-section">
+        <div class="filter-options">
+            <button id="filter-newest">Neueste</button>
+            <button id="filter-popular">Beliebteste</button>
+        </div>
+        <div class="blog-post">
+            <h2>Blog-Post 1</h2>
+            <p class="date">01. Januar 2023</p>
+            <p class="content">Inhalt des ersten Blog-Posts.</p>
+        </div>
+        <div class="blog-post">
+            <h2>Blog-Post 2</h2>
+            <p class="date">02. Januar 2023</p>
+            <p class="content">Inhalt des zweiten Blog-Posts.</p>
+        </div>
+        <div class="blog-post">
+            <h2>Blog-Post 3</h2>
+            <p class="date">03. Januar 2023</p>
+            <p class="content">Inhalt des dritten Blog-Posts.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; Tech Blog 2025</p>
+    </footer>
+
+
+<script>
+// Theme-Toggle-Funktion
+document.getElementById('theme-toggle').addEventListener('click', function () {
+    const body = document.body;
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+        this.textContent = 'Dark';
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+        this.textContent = 'Light';
+        localStorage.setItem('theme', 'dark');
+    }
+});
+
+// Beim Laden der Seite den gespeicherten Modus anwenden
+window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    const body = document.body;
+    const themeToggleButton = document.getElementById('theme-toggle');
+    
+    if (savedTheme === 'light') {
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+        themeToggleButton.textContent = 'Dark';
+    } else {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+        themeToggleButton.textContent = 'Light';
+    }
+});
+
+
+// Suchfunktion mit Levenshtein-Distanz und Weiterleitung
+document.getElementById("searchInput").addEventListener("input", function () {
+    let input = this.value.trim().toLowerCase();
+    let blogPosts = document.querySelectorAll(".blog-post h2");
+    let resultsList = document.getElementById("resultsList");
+
+    resultsList.innerHTML = ""; // Ergebnisse zurücksetzen
+    let results = [];
+
+    // Funktion zur Berechnung der Levenshtein-Distanz
+    function levenshteinDistance(a, b) {
+        const matrix = Array.from(Array(b.length + 1), () => new Array(a.length + 1).fill(0));
+
+        for (let i = 0; i <= a.length; i++) matrix[0][i] = i;
+        for (let j = 0; j <= b.length; j++) matrix[j][0] = j;
+
+        for (let i = 1; i <= b.length; i++) {
+            for (let j = 1; j <= a.length; j++) {
+                matrix[i][j] = b[i - 1] === a[j - 1]
+                    ? matrix[i - 1][j - 1]
+                    : Math.min(matrix[i - 1][j - 1] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j] + 1);
+            }
+        }
+        return matrix[b.length][a.length];
+    }
+
+    // Funktion zum Finden ähnlicher Wörter
+    function findSimilarWords(input, words, threshold = 2) {
+        if (input.length < 3) return []; // Vermeidet unsinnige Vorschläge bei sehr kurzen Eingaben
+        return words
+            .map(word => ({ word, distance: levenshteinDistance(input, word) }))
+            .filter(item => item.distance <= threshold)
+            .sort((a, b) => a.distance - b.distance) // Sortiert nach Ähnlichkeit
+            .map(item => item.word);
+    }
+
+    // Liste der Blogpost-Titel
+    const availableWords = Array.from(blogPosts).map(post => post.innerText.toLowerCase());
+
+    // 1️⃣ Exakte Treffer suchen
+    blogPosts.forEach(post => {
+        if (post.innerText.toLowerCase().includes(input) && input.length > 0) {
+            results.push(post.innerText);
+        }
+    });
+
+    // 2️⃣ Exakte Treffer anzeigen
+    results.forEach(title => {
+        let listItem = document.createElement("li");
+        listItem.textContent = title;
+        listItem.addEventListener("click", () => {
+            // Weiterleitung zur Blog-Post-Seite
+            window.location.href = `blogpost.html?title=${encodeURIComponent(title)}`;
+        });
+        resultsList.appendChild(listItem);
+    });
+
+    // 3️⃣ Falls keine exakten Treffer → Ähnliche Wörter suchen
+    if (results.length === 0 && input.length >= 3) {
+        const similarWords = findSimilarWords(input, availableWords);
+        console.log("Eingegebener Text:", input);
+        console.log("Ähnliche Wörter gefunden:", similarWords);
+
+        if (similarWords.length > 0) {
+            similarWords.forEach(word => {
+                let suggestionItem = document.createElement("li");
+                suggestionItem.textContent = "Meintest du: " + word;
+                suggestionItem.addEventListener("click", () => {
+                    // Weiterleitung zur Blog-Post-Seite
+                    window.location.href = `blogpost.html?title=${encodeURIComponent(word)}`;
+                });
+                resultsList.appendChild(suggestionItem);
+            });
+        }
+    }
+
+    // Ergebnisliste anzeigen oder verstecken
+    resultsList.style.display = resultsList.children.length > 0 ? "block" : "none";
+});
+
+// Filteroptionen
+document.getElementById('filter-newest').addEventListener('click', () => {
+    filterPosts('newest');
+});
+
+document.getElementById('filter-popular').addEventListener('click', () => {
+    filterPosts('popular');
+});
+
+// Funktion zum Filtern der Blog-Posts
+function filterPosts(filterType) {
+    const blogPosts = Array.from(document.querySelectorAll('.blog-post'));
+    blogPosts.sort((a, b) => {
+        const dateA = new Date(a.querySelector('.date').textContent);
+        const dateB = new Date(b.querySelector('.date').textContent);
+        if (filterType === 'newest') {
+            return dateB - dateA; // Neueste zuerst
+        } else if (filterType === 'popular') {
+            // Hier könnten Sie eine Logik für die Beliebtheit implementieren
+            return Math.random() - 0.5; // Beispielhaft: Zufällige Sortierung
+        }
+    });
+
+    const blogSection = document.querySelector('.blog-section');
+    blogPosts.forEach(post => blogSection.appendChild(post));
+}
+</script>
+</body>
+</html>
