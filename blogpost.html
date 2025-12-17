@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Test Description">
+    <meta name="keywords" content="Test Keywords">
+    <meta property="og:title" content="Blog Post - Trueface">
+    <meta property="og:description" content="Test Description">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/favicon-16x16.ico">
+    <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon-32x32.ico">
+    <link rel="icon" type="image/x-icon" sizes="48x48" href="/favicon-48x48.ico">
+    <link rel="icon" type="image/x-icon" sizes="64x64" href="/favicon-64x64.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <title>Blogpost | Trueface</title>
+</head>
+<body class="dark-mode">
+    <header class="header">
+        <h1 class="title">Trueface</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About me</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle">Light</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+  <section class="blogpost-section">
+    <div id="blogpost-content">
+      
+    </div>
+  </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Trueface. All rights reserved.</p>
+    </footer>
+
+    <script>
+        
+        document.getElementById('theme-toggle').addEventListener('click', function () {
+            const body = document.body;
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                this.textContent = 'Dark';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                this.textContent = 'Light';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const body = document.body;
+            const themeToggleButton = document.getElementById('theme-toggle');
+            
+            if (savedTheme === 'light') {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                themeToggleButton.textContent = 'Dark';
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                themeToggleButton.textContent = 'Light';
+            }
+        });
+
+async function loadBlogPost() {
+  const params = new URLSearchParams(window.location.search);
+  const postFile = params.get("post");
+
+  if (!postFile) {
+    document.getElementById("blogpost-content").innerHTML =
+      "<p class='text-center text-gray-500 mt-10'>No blogpost specified.</p>";
+    return;
+  }
+
+  try {
+    const response = await fetch(`./Blogposts/${postFile}`);
+    if (!response.ok) throw new Error("404");
+
+    const content = await response.text();
+    document.getElementById("blogpost-content").innerHTML = content;
+  } catch (error) {
+    document.getElementById("blogpost-content").innerHTML =
+      "<p class='text-center text-gray-500 mt-10'>This blogpost could not be loaded.</p>";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadBlogPost);
+
+    </script>
+</body>
+</html>
