@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Test Description">
+    <meta name="keywords" content="Test Keywords">
+    <meta property="og:title" content="Tech Blog - Trueface">
+    <meta property="og:description" content="Test Description">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/favicon-16x16.ico">
+    <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon-32x32.ico">
+    <link rel="icon" type="image/x-icon" sizes="48x48" href="/favicon-48x48.ico">
+    <link rel="icon" type="image/x-icon" sizes="64x64" href="/favicon-64x64.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <title>Blog | Trueface</title>
+</head>
+<body class="dark-mode">
+    <header class="header">
+        <h1 class="title">Trueface</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About me</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle">Light</button>
+                </li>
+                <li>
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Search...">
+                        <ul id="resultsList"></ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="blog-list" class="blog-section">
+
+    </section>
+
+
+    <footer class="footer">
+        <p>&copy; 2025 Trueface. All rights reserved.</p>
+    </footer>
+
+    <script>
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const container = document.getElementById("blog-list");
+
+  try {
+    const response = await fetch("./posts.json");
+    if (!response.ok) throw new Error("posts.json not found.");
+    const posts = await response.json();
+
+    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    posts.forEach(post => {
+      const postDiv = document.createElement("div");
+      postDiv.classList.add("blog-preview");
+
+      postDiv.innerHTML = `
+        <h2>${post.title}</h2>
+        <span class="date">${post.date}</span>
+        <p>${post.description || "No preview available"}</p>
+        <a href="./blogpost.html?post=${encodeURIComponent(post.filename)}" class="read-more">Read more</a>
+      `;
+
+      container.appendChild(postDiv);
+    });
+
+  } catch (error) {
+    container.innerHTML = `<p>An error occurred while loading blog posts: ${error.message}</p>`;
+  }
+});
+
+        document.getElementById('theme-toggle').addEventListener('click', function () {
+            const body = document.body;
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                this.textContent = 'Dark';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                this.textContent = 'Light';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const body = document.body;
+            const themeToggleButton = document.getElementById('theme-toggle');
+            
+            if (savedTheme === 'light') {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                themeToggleButton.textContent = 'Dark';
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                themeToggleButton.textContent = 'Light';
+            }
+        });
+
+document.addEventListener("DOMContentLoaded", async function () {
+    const searchInput = document.getElementById("searchInput");
+    const resultsList = document.getElementById("resultsList");
+
+    if (!searchInput || !resultsList) return;
+
+    let posts = [];
+    try {
+        const res = await fetch("posts.json");
+        posts = await res.json();
+    } catch (err) {
+        console.error("Error loading posts.json:", err);
+    }
+
+    searchInput.addEventListener("input", function () {
+        const input = this.value.trim().toLowerCase();
+        resultsList.innerHTML = "";
+
+        if (input.length === 0) {
+            resultsList.style.display = "none";
+            return;
+        }
+
+        const results = posts.filter(post =>
+            post.title.toLowerCase().includes(input)
+        );
+
+        if (results.length === 0) {
+            const noResult = document.createElement("li");
+            noResult.textContent = "No results 😕";
+            noResult.style.opacity = "0.7";
+            resultsList.appendChild(noResult);
+        } else {
+            results.forEach(post => {
+                const listItem = document.createElement("li");
+                listItem.textContent = post.title;
+
+                listItem.addEventListener("click", () => {
+                    
+                    window.location.href = `./blogpost.html?post=${encodeURIComponent(post.filename)}`;
+                });
+
+                resultsList.appendChild(listItem);
+            });
+        }
+
+        resultsList.style.display = resultsList.children.length > 0 ? "block" : "none";
+    });
+});
+
+
+    </script>
+</body>
+</html>
