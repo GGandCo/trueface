@@ -1,137 +1,135 @@
-/* === TRUEFACE – FRUTIGER AERO VISUAL OVERLAY === */
-/* Layout & positioning are intentionally preserved */
+/* ============================= */
+/* TRUE FRUTIGER AERO VISUAL SKIN */
+/* layout-safe design override   */
+/* ============================= */
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+:root {
+  --aero-glass: rgba(255,255,255,0.55);
+  --aero-glass-strong: rgba(255,255,255,0.75);
+  --aero-border: rgba(255,255,255,0.6);
+  --aero-highlight: rgba(255,255,255,0.9);
+  --aero-shadow-soft: 0 8px 20px rgba(0,0,0,0.18);
+  --aero-shadow-strong: 0 20px 40px rgba(0,0,0,0.25);
+  --aero-blue: #7dd3fc;
+  --aero-green: #86efac;
 }
 
-:root{
-  --glass:rgba(255,255,255,0.55);
-  --glass-strong:rgba(255,255,255,0.75);
-  --border:rgba(255,255,255,0.6);
-  --highlight:rgba(255,255,255,0.9);
-  --shadow-soft:0 10px 25px rgba(0,0,0,0.18);
-  --shadow-strong:0 20px 45px rgba(0,0,0,0.25);
-  --blue:#7dd3fc;
-  --green:#86efac;
-}
-
-body{
-  font-family:'Montserrat',sans-serif;
+/* BODY / PAGE */
+body,
+html {
   background:
-    radial-gradient(circle at top left,#b3ecff,transparent 45%),
-    radial-gradient(circle at bottom right,#a7f3d0,transparent 45%),
-    linear-gradient(180deg,#e6f9ff,#f4fff9);
-  color:#0f172a;
+    radial-gradient(circle at top left, #b3ecff, transparent 45%),
+    radial-gradient(circle at bottom right, #a7f3d0, transparent 45%),
+    linear-gradient(180deg, #e6f9ff, #f4fff9);
 }
 
-/* ===== HEADER ===== */
-header{
-  background:linear-gradient(180deg,var(--glass-strong),var(--glass));
-  backdrop-filter:blur(18px) saturate(160%);
-  border-bottom:1px solid var(--border);
-  box-shadow:var(--shadow-strong);
+/* HEADER */
+.header {
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.85),
+      rgba(255,255,255,0.55));
+  backdrop-filter: blur(18px) saturate(160%);
+  border-bottom: 1px solid var(--aero-border);
+  box-shadow: var(--aero-shadow-strong);
 }
 
-header h1{
-  background:linear-gradient(180deg,#ffffff,#c7f9ff);
-  -webkit-background-clip:text;
-  color:transparent;
-  text-shadow:0 2px 6px rgba(0,0,0,.25);
+.title {
+  background: linear-gradient(180deg, #ffffff, #c7f9ff);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
 
-/* ===== NAVIGATION ===== */
-nav a{
-  background:linear-gradient(180deg,#ffffff,#c9f3ff);
-  border:1px solid var(--border);
-  border-radius:999px;
+/* NAV BUTTONS */
+.navbar ul li a,
+#theme-toggle,
+#searchInput {
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.9),
+      rgba(180,235,255,0.7));
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--aero-border);
   box-shadow:
-    inset 0 1px 0 var(--highlight),
-    0 6px 16px rgba(0,0,0,.25);
-  transition:transform .25s ease, box-shadow .25s ease;
+    inset 0 1px 0 var(--aero-highlight),
+    0 6px 16px rgba(0,0,0,0.25);
 }
 
-nav a:hover{
-  transform:translateY(-2px);
+.navbar ul li a:hover,
+#theme-toggle:hover,
+#searchInput:hover {
   box-shadow:
-    inset 0 1px 0 var(--highlight),
-    0 10px 28px rgba(0,0,0,.3);
+    inset 0 1px 0 var(--aero-highlight),
+    0 10px 28px rgba(0,0,0,0.3);
 }
 
-/* ===== MAIN SECTIONS ===== */
-main section{
-  background:linear-gradient(180deg,var(--glass-strong),var(--glass));
-  backdrop-filter:blur(22px) saturate(170%);
-  border:1px solid var(--border);
-  border-radius:28px;
-  box-shadow:var(--shadow-strong);
-  position:relative;
-  overflow:hidden;
+/* SEARCH DROPDOWN */
+#resultsList {
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.95),
+      rgba(255,255,255,0.75));
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--aero-border);
 }
 
-main section::after{
-  content:"";
-  position:absolute;
-  inset:auto -40% -60% -40%;
-  height:120%;
-  background:radial-gradient(circle,rgba(255,255,255,0.45),transparent 60%);
-  pointer-events:none;
-}
-
-main h2{
-  color:#0369a1;
-}
-
-/* ===== BLOG POSTS ===== */
+/* CONTENT CARDS */
+.intropost,
 .blog-post,
-.post{
-  background:linear-gradient(180deg,#ffffff,#d9faff);
-  border:1px solid var(--border);
-  border-radius:24px;
-  box-shadow:var(--shadow-soft);
-  transition:transform .25s ease, box-shadow .25s ease;
-}
-
-.blog-post:hover,
-.post:hover{
-  transform:scale(1.015);
-  box-shadow:var(--shadow-strong);
-}
-
-/* ===== BUTTONS ===== */
-button{
-  background:linear-gradient(180deg,#ffffff,#b3ecff);
-  border:1px solid var(--border);
-  border-radius:999px;
-  box-shadow:
-    inset 0 1px 0 var(--highlight),
-    0 8px 20px rgba(0,0,0,.25);
-  transition:transform .2s ease, box-shadow .2s ease;
-}
-
-button:hover{
-  transform:translateY(-1px);
-}
-
-/* ===== FOOTER ===== */
-footer{
-  background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.3));
-  backdrop-filter:blur(16px);
-  border-top:1px solid var(--border);
-}
-
-/* ===== DARK MODE (keeps layout) ===== */
-body.dark{
+.blog-preview,
+.blogpost-section,
+section.blog-content {
   background:
-    radial-gradient(circle at top left,#0f172a,transparent 45%),
-    radial-gradient(circle at bottom right,#064e3b,transparent 45%),
-    linear-gradient(180deg,#020617,#020617);
-  color:#e5e7eb;
+    linear-gradient(180deg,
+      rgba(255,255,255,0.85),
+      rgba(255,255,255,0.55));
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--aero-border);
+  box-shadow: var(--aero-shadow-strong);
 }
 
-body.dark header,
-body.dark main section{
-  background:linear-gradient(180deg,rgba(30,41,59,.9),rgba(30,41,59,.7));
+/* BUTTONS / INPUTS */
+button,
+textarea,
+input {
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.95),
+      rgba(220,245,255,0.75));
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--aero-border);
+  box-shadow:
+    inset 0 1px 0 var(--aero-highlight),
+    0 6px 14px rgba(0,0,0,0.2);
+}
+
+/* FOOTER */
+.footer {
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.6),
+      rgba(255,255,255,0.35));
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--aero-border);
+}
+
+/* DARK MODE – still Frutiger Aero */
+body.dark-mode {
+  background:
+    radial-gradient(circle at top left, #0f172a, transparent 45%),
+    radial-gradient(circle at bottom right, #064e3b, transparent 45%),
+    linear-gradient(180deg, #020617, #020617);
+}
+
+body.dark-mode .header,
+body.dark-mode .intropost,
+body.dark-mode .blog-post,
+body.dark-mode .blog-preview,
+body.dark-mode section.blog-content {
+  background:
+    linear-gradient(180deg,
+      rgba(30,41,59,0.9),
+      rgba(30,41,59,0.7));
+  backdrop-filter: blur(20px);
 }
