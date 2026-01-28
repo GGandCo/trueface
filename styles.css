@@ -947,3 +947,21 @@ body.dark-mode #searchInput {
     backdrop-filter: blur(26px) saturate(180%);
     -webkit-backdrop-filter: blur(26px) saturate(180%);
 }
+
+/* FIX: Search Input Text Color */
+
+#searchInput {
+    color: #06314f !important;
+}
+
+body.dark-mode #searchInput {
+    color: #e6f4ff !important;
+}
+
+#searchInput::placeholder {
+    color: rgba(6,49,79,0.6);
+}
+
+body.dark-mode #searchInput::placeholder {
+    color: rgba(230,244,255,0.65);
+}
