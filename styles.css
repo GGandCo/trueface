@@ -1,225 +1,233 @@
+/* ===============================
+   RESET
+================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ===============================
+   ROOT / BODY
+================================ */
 html, body {
     height: 100%;
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
-    font-size: clamp(14px, 2vw, 18px);
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    background:
-        radial-gradient(circle at 10% 15%, rgba(140,220,255,0.55), transparent 60%),
-        radial-gradient(circle at 85% 30%, rgba(170,255,220,0.45), transparent 55%),
-        radial-gradient(circle at 50% 90%, rgba(255,255,255,0.65), transparent 70%),
-        linear-gradient(180deg, #cfeeff 0%, #eaf8ff 55%, #ffffff 100%);
-    color: #083654;
-    transition: background 0.4s, color 0.4s;
-}
-
-body.dark-mode {
-    background:
-        radial-gradient(circle at 15% 20%, rgba(120,180,255,0.35), transparent 60%),
-        radial-gradient(circle at 80% 35%, rgba(140,240,210,0.25), transparent 55%),
-        linear-gradient(180deg, #0e263d 0%, #143a5a 55%, #0a1c2d 100%);
-    color: #e6f4ff;
-}
-
-.header {
+    background: #eaf6ff;
+    color: #1f2a36;
+    transition: background 0.6s ease, color 0.6s ease;
     position: relative;
-    padding: 2.5rem 0;
-    text-align: center;
-    backdrop-filter: blur(28px) saturate(200%);
-    background:
-        linear-gradient(180deg,
-            rgba(220,250,255,0.95),
-            rgba(150,210,245,0.9),
-            rgba(90,165,230,0.95));
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,0.9),
-        0 12px 40px rgba(0,120,200,0.35);
 }
 
-body.dark-mode .header {
+/* ===============================
+   LIVING WABERNDER BACKGROUND
+================================ */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: -25%;
+    z-index: -1;
+    filter: blur(140px);
+    animation: liquidMove 45s infinite alternate ease-in-out;
+}
+
+body::before {
+    background:
+        radial-gradient(circle at 20% 30%, rgba(140,220,255,0.9), transparent 45%),
+        radial-gradient(circle at 80% 20%, rgba(160,255,220,0.85), transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(255,255,255,0.9), transparent 55%);
+}
+
+body::after {
+    background:
+        radial-gradient(circle at 70% 60%, rgba(90,170,255,0.85), transparent 50%),
+        radial-gradient(circle at 30% 70%, rgba(200,255,230,0.8), transparent 55%);
+    animation-duration: 65s;
+}
+
+@keyframes liquidMove {
+    0%   { transform: translate(0,0) scale(1); }
+    50%  { transform: translate(-6%, -4%) scale(1.12); }
+    100% { transform: translate(5%, 6%) scale(1.06); }
+}
+
+/* ===============================
+   GLASS BASE
+================================ */
+.intropost,
+.blog-post,
+.blog-preview,
+.blog-section,
+.blogpost-section,
+section.blog-content,
+.header,
+.footer,
+#resultsList {
     background:
         linear-gradient(180deg,
-            rgba(60,120,170,0.95),
-            rgba(30,80,130,0.95));
+        rgba(255,255,255,0.45),
+        rgba(255,255,255,0.18));
+    backdrop-filter: blur(34px) saturate(220%);
+    -webkit-backdrop-filter: blur(34px) saturate(220%);
+    border: 1px solid rgba(255,255,255,0.65);
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,0.95),
+        inset 0 -2px 4px rgba(255,255,255,0.35),
+        0 30px 80px rgba(0,120,200,0.35);
+    border-radius: 1.5rem;
+    position: relative;
+}
+
+/* ===============================
+   GLASS SHINE
+================================ */
+.intropost::after,
+.blog-post::after,
+.blog-preview::after,
+.header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            120deg,
+            transparent 30%,
+            rgba(255,255,255,0.45),
+            transparent 70%
+        );
+    animation: shineMove 10s infinite ease-in-out;
+}
+
+@keyframes shineMove {
+    0% { transform: translateX(-120%); opacity: 0; }
+    40% { opacity: 0.9; }
+    100% { transform: translateX(120%); opacity: 0; }
+}
+
+/* ===============================
+   HEADER / NAV
+================================ */
+.header {
+    text-align: center;
+    padding: 2rem 0;
 }
 
 .title {
     font-size: 3rem;
-    font-weight: 900;
-    letter-spacing: 0.35rem;
+    letter-spacing: 0.3rem;
     text-transform: uppercase;
-    text-shadow:
-        0 2px 6px rgba(255,255,255,0.6),
-        0 8px 25px rgba(0,120,200,0.35);
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
 
+/* ===============================
+   NAV BUTTONS + SEARCH
+================================ */
 .navbar ul {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 2rem;
-    list-style: none;
     flex-wrap: wrap;
+    list-style: none;
 }
 
 .navbar ul li a,
 #theme-toggle,
 #searchInput {
-    height: 3rem;
-    padding: 0 2rem;
+    background: linear-gradient(
+        180deg,
+        rgba(140,220,255,0.95),
+        rgba(70,140,220,0.95)
+    );
+    color: #ffffff;
     border-radius: 2rem;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    font-size: 1rem;
-    color: #06314f;
-    backdrop-filter: blur(22px) saturate(180%);
-    background:
-        linear-gradient(180deg,
-            rgba(255,255,255,0.95),
-            rgba(180,235,255,0.9),
-            rgba(110,190,235,0.95));
-    border: 1px solid rgba(255,255,255,0.75);
+    padding: 1rem 2rem;
+    border: 1px solid rgba(255,255,255,0.55);
+    backdrop-filter: blur(20px);
     box-shadow:
-        inset 0 1px 1px rgba(255,255,255,1),
-        inset 0 -2px 4px rgba(0,0,0,0.25),
-        0 10px 28px rgba(0,120,200,0.35);
-    transition: all 0.3s ease;
+        inset 0 1px 1px rgba(255,255,255,0.55),
+        inset 0 -2px 3px rgba(0,0,0,0.45),
+        0 10px 30px rgba(0,100,200,0.6);
+    transition: all 0.4s ease;
 }
 
 .navbar ul li a:hover,
 #theme-toggle:hover,
 #searchInput:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,1),
-        0 16px 40px rgba(0,140,255,0.5);
+    transform: translateY(-3px) scale(1.03);
 }
 
-body.dark-mode .navbar ul li a,
-body.dark-mode #theme-toggle,
-body.dark-mode #searchInput {
-    background:
-        linear-gradient(180deg,
-            rgba(140,200,255,0.9),
-            rgba(70,130,200,0.95));
-    color: #e6f4ff;
-}
-
-.navbar .search-container {
-    position: relative;
-}
-
+/* ===============================
+   SEARCH RESULTS
+================================ */
 #resultsList {
-    position: absolute;
-    top: 100%;
-    width: 100%;
     margin-top: 0.5rem;
-    list-style: none;
-    border-radius: 1.2rem;
-    backdrop-filter: blur(26px) saturate(190%);
-    background: rgba(255,255,255,0.35);
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,0.9),
-        0 18px 45px rgba(0,120,200,0.35);
-    display: none;
-    z-index: 1000;
 }
 
-body.dark-mode #resultsList {
-    background: rgba(40,80,120,0.6);
+/* ===============================
+   CONTENT
+================================ */
+.blog-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-#resultsList li {
-    padding: 1rem;
-    cursor: pointer;
-}
-
-#resultsList li:hover {
-    background: rgba(255,255,255,0.35);
-}
-
-.Introduction,
-.blog-section,
-.blog-content,
-.blogpost-section,
-.intropost,
-.blog-post {
-    position: relative;
-    max-width: 90vw;
-    margin: 5vh auto 14vh auto;
-    padding: 2.5rem;
-    border-radius: 1.8rem;
-    backdrop-filter: blur(30px) saturate(200%);
-    background: rgba(255,255,255,0.25);
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,0.95),
-        0 22px 55px rgba(0,120,200,0.35);
-}
-
-body.dark-mode .Introduction,
-body.dark-mode .blog-section,
-body.dark-mode .blog-content,
-body.dark-mode .blogpost-section,
-body.dark-mode .intropost,
-body.dark-mode .blog-post {
-    background: rgba(40,80,120,0.5);
-}
-
-.blog-preview {
-    border-radius: 1.6rem;
-    padding: 2rem;
-    background: rgba(255,255,255,0.18);
-    backdrop-filter: blur(26px) saturate(190%);
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,0.9),
-        0 16px 40px rgba(0,120,200,0.35);
-    transition: transform 0.3s ease;
-}
-
-.blog-preview:hover {
-    transform: translateY(-4px);
-}
-
+/* ===============================
+   FOOTER
+================================ */
 .footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    padding: 2rem;
     text-align: center;
-    backdrop-filter: blur(30px) saturate(200%);
+    padding: 1.5rem;
+}
+
+/* ===============================
+   MICRO ANIMATION
+================================ */
+.intropost,
+.blog-preview,
+button,
+.navbar a {
+    animation: breathe 14s infinite ease-in-out;
+}
+
+@keyframes breathe {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-2px) scale(1.01); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+/* ===============================
+   DARK MODE
+================================ */
+body.dark-mode {
+    background: #1e2a38;
+    color: #eaf6ff;
+}
+
+body.dark-mode::before,
+body.dark-mode::after {
+    opacity: 0.65;
+}
+
+body.dark-mode .header,
+body.dark-mode .footer,
+body.dark-mode .intropost,
+body.dark-mode .blog-post,
+body.dark-mode .blog-preview {
     background:
         linear-gradient(180deg,
-            rgba(210,245,255,0.9),
-            rgba(130,200,240,0.85),
-            rgba(80,160,225,0.9));
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,0.9),
-        0 -12px 35px rgba(0,120,200,0.35);
-}
-
-body.dark-mode .footer {
-    background:
-        linear-gradient(180deg,
-            rgba(45,95,145,0.95),
-            rgba(20,55,95,1));
-    color: #e6f4ff;
-}
-
-input::placeholder {
-    color: rgba(6,49,79,0.6);
-}
-
-body.dark-mode input::placeholder {
-    color: rgba(230,244,255,0.65);
+        rgba(40,70,110,0.6),
+        rgba(20,40,70,0.45));
 }
