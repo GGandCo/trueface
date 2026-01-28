@@ -643,39 +643,67 @@ body.light-mode .blog-preview a.read-more:hover {
   display: block;
 }
 
+/* ======================================================
+   EXTREME FRUTIGER AERO – FULL UI THEME
+   ====================================================== */
+
+/* -------------------------
+   GLOBAL FOUNDATION
+   ------------------------- */
+
+* {
+    box-sizing: border-box;
+}
+
 html, body {
+    margin: 0;
+    padding: 0;
     min-height: 100%;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: #0b2a44;
+
     background:
-        radial-gradient(circle at 20% 20%, rgba(120,220,255,0.9), transparent 55%),
-        radial-gradient(circle at 80% 30%, rgba(140,255,210,0.9), transparent 60%),
-        radial-gradient(circle at 50% 80%, rgba(255,255,255,0.8), transparent 65%),
-        linear-gradient(180deg, #bfe9ff 0%, #eaf7ff 50%, #ffffff 100%);
+        radial-gradient(circle at 15% 20%, rgba(140,240,255,0.9), transparent 55%),
+        radial-gradient(circle at 85% 30%, rgba(160,255,220,0.85), transparent 60%),
+        radial-gradient(circle at 50% 85%, rgba(255,255,255,0.85), transparent 65%),
+        linear-gradient(180deg, #bfe9ff 0%, #e9f7ff 45%, #ffffff 100%);
     background-attachment: fixed;
 }
 
+/* -------------------------
+   GENERIC GLASS PANEL
+   ------------------------- */
+
 .blog-preview,
 .blogpost-section,
-.intropost,
 .blog-post,
-section.blog-content,
-.blog-section {
-    background: rgba(255,255,255,0.28) !important;
-    backdrop-filter: blur(35px) saturate(200%);
-    -webkit-backdrop-filter: blur(35px) saturate(200%);
-    border-radius: 14px;
+.intropost,
+.blog-section,
+section,
+article,
+main,
+aside {
+    position: relative;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
     border: 1px solid rgba(255,255,255,0.65);
+    border-radius: 18px;
+
     box-shadow:
-        inset 0 1px 1px rgba(255,255,255,0.9),
+        inset 0 1px 1px rgba(255,255,255,0.95),
         inset 0 -1px 1px rgba(255,255,255,0.25),
         0 30px 70px rgba(0,0,0,0.25);
-    position: relative;
 }
 
+/* GLASS REFLECTION LAYER */
 .blog-preview::before,
 .blogpost-section::before,
-.intropost::before,
 .blog-post::before,
-section.blog-content::before {
+.intropost::before,
+section::before,
+article::before,
+main::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -683,28 +711,144 @@ section.blog-content::before {
     background: linear-gradient(
         135deg,
         rgba(255,255,255,0.85) 0%,
-        rgba(255,255,255,0.35) 25%,
-        rgba(255,255,255,0.15) 45%,
-        rgba(255,255,255,0.05) 65%
+        rgba(255,255,255,0.35) 30%,
+        rgba(255,255,255,0.15) 50%,
+        rgba(255,255,255,0.05) 70%
     );
     pointer-events: none;
 }
 
-button,
-.navbar ul li a,
-.blog-preview a.read-more,
-#theme-toggle {
+/* -------------------------
+   HEADER / NAVBAR – AERO BAR
+   ------------------------- */
+
+header,
+.navbar {
+    background: linear-gradient(
+        180deg,
+        rgba(220,250,255,0.95),
+        rgba(140,210,245,0.9),
+        rgba(90,170,230,0.95)
+    );
+    backdrop-filter: blur(30px) saturate(180%);
+    border-bottom: 1px solid rgba(255,255,255,0.8);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,1),
+        0 15px 35px rgba(0,0,0,0.35);
+}
+
+/* NAV LINKS – GEL BUTTONS */
+.navbar a,
+nav a {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #08304f;
+    font-weight: 500;
+
     background: linear-gradient(
         180deg,
         rgba(255,255,255,0.9),
-        rgba(160,225,255,0.85) 45%,
-        rgba(90,180,235,0.9) 55%,
-        rgba(40,130,210,1)
+        rgba(160,220,255,0.85) 50%,
+        rgba(90,170,235,0.95)
     );
+
     border-radius: 999px;
     border: 1px solid rgba(255,255,255,0.7);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,1),
+        inset 0 -2px 3px rgba(0,0,0,0.25),
+        0 8px 18px rgba(0,0,0,0.3);
+}
+
+/* -------------------------
+   BUTTONS – WATER DROPLETS
+   ------------------------- */
+
+button,
+input[type="submit"] {
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.95),
+        rgba(170,230,255,0.9) 45%,
+        rgba(100,185,240,0.95) 55%,
+        rgba(50,140,220,1)
+    );
+    color: #062944;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.8);
+    padding: 8px 18px;
+
     box-shadow:
         inset 0 1px 1px rgba(255,255,255,1),
         inset 0 -2px 3px rgba(0,0,0,0.25),
         0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* -------------------------
+   INPUTS – FROSTED GLASS
+   ------------------------- */
+
+input,
+textarea {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.6);
+    padding: 8px 12px;
+    color: #06324f;
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,0.8),
+        0 6px 14px rgba(0,0,0,0.25);
+}
+
+/* -------------------------
+   TEXT – CLEAN AERO
+   ------------------------- */
+
+h1, h2, h3 {
+    color: #08314d;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* -------------------------
+   DARK MODE – NIGHT AERO
+   ------------------------- */
+
+body.dark-mode {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(80,160,255,0.5), transparent 60%),
+        linear-gradient(180deg, #0b1e33, #132c44);
+    color: #e6f4ff;
+}
+
+body.dark-mode section,
+body.dark-mode article,
+body.dark-mode .blog-preview {
+    background: rgba(40,70,110,0.45);
+    border: 1px solid rgba(120,180,240,0.3);
+}
+
+/* -------------------------
+   SCROLLBAR – AERO FLEX
+   ------------------------- */
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.8),
+        rgba(120,200,255,0.9)
+    );
+    border-radius: 999px;
 }
