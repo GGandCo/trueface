@@ -1,1056 +1,905 @@
-BODY { margin: 0px; background-color: #252525; color: #FFFFFF; font-family: Arial; font-size: 12px; background-image:url(/images/TheEdge2/background.bg.gif);background-position: center top; background-repeat: repeat }
-.BODY { margin: 0px; background-color: #1D4A5E; background-image:url(/images/TheEdge2/background.bg.jpg); background-position: center top; background-repeat: no-repeat; color: #FFFFFF; font-family: Arial; font-size: 12px; }
-
-INPUT.mbarsearch {
-	background-color: #ffffff;
-	border-color: #000000;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	color: #000000;
-	border-width: 1px;
-	border-style: none;
-	width: 105px;
-	height: 18px;
-	margin-top: 3px;
-	position: relative;
-	top: -3px;
-	left: 2px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.mbarsearch2 { background-color: #ffffff;
-	border-color: #000000;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	color: #000000;
-	border-width: 1px;
-	border-style: none;
-	width: 105px;
-	height: 18px;
-	margin-top: 5px;
-	position: relative;
-	top: -3px;
-	left: 2px; }
+html {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #F0F4F8;
+    color: #2D3748;
+    line-height: 1.6;
+    overflow-x: hidden;
+    font-size: clamp(10.5px, 1.3vw, 14.5px);
+    transition: background-color 0.3s, color 0.3s;
+}
 
-INPUT.mbarsearchbutton
-	{
-	position: absolute;
-	top: 92px;
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #F0F4F8;
+    color: #2D3748;
+    line-height: 1.6;
+    overflow-x: hidden;
+    font-size: clamp(14px, 2vw, 18px);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.header {
+    background-color: #FF6B6B;
+    padding: 2rem 0;
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    text-align: center;
+    animation: fadeInDown 1.5s ease-out;
+    transition: transform 0.3s ease-in-out;
+}
+
+.title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    margin-bottom: 1rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-right: 5px;
+    flex-wrap: wrap;
+}
+
+.navbar ul li a, #theme-toggle, input {
+    background-color: #4ECDC4;
+    color: #FFFFFF;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    margin: 0 0.5rem;
+    white-space: nowrap;
+}
+
+.navbar ul li a:hover, #theme-toggle:hover, #searchInput:hover {
+    background-color: #45B8B0;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(78, 205, 196, 0.3);
+}
+
+.navbar .search-container {
+    position: relative;
+    display: inline-block;
+}
+
+#searchInput {
+    font-size: 1rem;
+    padding: 1rem;
+    background-color: #4ECDC4;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s;
+    margin-left: 17px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#resultsList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #FFFFFF;
+    border-radius: 1rem;
+    z-index: 1000;
+    margin-top: 0.5rem;
+    display: none;
+    padding: 0;
+    list-style: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+input::placeholder {
+    color: #F0F4F8;
+}
+
+#resultsList li {
+    padding: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#resultsList li:hover {
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.Introduction,
+.blog-section,
+.blog-content,
+.blogpost-section {
+  margin-top: 5vh;
+  margin-bottom: 14vh;
+  max-width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeInUp 1s ease-out;
+}
+
+.blog-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.blog-preview {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-preview:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.blog-preview h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color, #fff);
+}
+
+.blog-preview .date {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.blog-preview p {
+  line-height: 1.6;
+  color: var(--text-color, #ddd);
+  margin-bottom: 1.5rem;
+}
+
+.blog-preview a.read-more {
+  color: #fff;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  transition: background 0.2s ease;
+}
+
+.blog-preview a.read-more:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.blogpost-section {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.blogpost-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-color, #fff);
+}
+
+.blogpost-section p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-color, #ddd);
+  margin-bottom: 1.5rem;
+}
+
+.blogpost-section .date {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.contact-section {
+    margin-top: 5vh;
+    margin-bottom: 14vh;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1s ease-out;
+}
+
+.intropost, .blog-post, section.blog-content {
+    background-color: #FFFFFF;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+.intropost h2, .blog-post h2, h2#post-title {
+    font-size: 2rem;
+    color: #FF6B6B;
+    margin-bottom: 1rem;
+}
+
+.intropost .content, p#post-content.content, p#post-intro.intro {
+    font-size: 1.1rem;
+    color: #4A5568;
 }
 
 .footer {
-	font-size: 11px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	color: #000000;
+    background-color: #2D3748;
+    color: #CBD5E0;
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
-A {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: Blue;
-	font-weight: bold;
-	text-decoration: underline;
+textarea, button, button.comment-button, button#submit {
+    background-color: #FFFFFF;
+    color: #2D3748;
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-A:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: Navy;
-	font-weight: bold;
-	text-decoration: none;
+input#name {
+    background-color: #FFFFFF;
+    color: #2D3748;
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 0%;
 }
 
-A:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: Black;
-	font-weight: bold;
-	text-decoration: underline;
+input#email {
+    background-color: #FFFFFF;
+    color: #2D3748;
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 0%;
 }
 
-A.thin {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: Blue;
-	font-weight: normal;
-	text-decoration: underline;
-}
-
-A.thin:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: Navy;
-	font-weight: normal;
-	text-decoration: none;
-}
-
-A.thin:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: Black;
-	font-weight: normal;
-	text-decoration: underline;
-}
-
-A.nonhyper {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: Black;
-	font-weight: bold;
-	text-decoration: none;
-}
-	
-
-.newsitem {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: black;
-	line-height: 16px;
-}
-
-A.newsitem {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: black;
-	font-weight: normal;
-	text-decoration: none;	
-	line-height: 16px;
-}
-
-A.newsitem:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #BE2526;
-	font-weight: normal;
-	text-decoration: underline;
-}
-
-A.newsitem:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: Black;
-	font-weight: normal;
-	text-decoration: none;
-}
-
-TD {
-	font-size: 11px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	color: #000000;
-	font-weight: normal;
-	line-height: 16px;
-}
-
-TD.notile {
-	background-repeat: no-repeat;
-}
-/* ----------------- */
-/*
-H1 {
-	font-size: 13px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	color: #000000;
-	font-weight: bold;
-	line-height: 14px;
-	padding-bottom: 0px;
-	margin-bottom: 8px;
-}
-*/
-/* ----------------- */
-h1 {
-	font-size: 18px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	color: #000000;
-	font-weight: bold;
-	line-height: 22px;
-	margin-top: 0px;	
-	margin-bottom: 0px;
-}
-
-h2 
-{
-  	font-size: 16px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	color: #000000;
-	font-weight: bold;
-	line-height: 18px;
-	margin-top: 0px;	
-	margin-bottom: 0px;
-
-}
-h3 
-{
-  	font-size: 13px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	color: #000000;
-	font-weight: bold;
-	line-height: 14px;
-	margin-top: 0px;	
-	margin-bottom: 8px;
-}
-h4 {
-	font-size: 13px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	color: #000000;
-	font-weight: bold;
-	line-height: 15px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-}
-h5 {
-  	font-size: 12px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	color: #000000;
-	font-weight: normal;
-	line-height: 14px;
-	margin-top: 0px;	
-	margin-bottom: 0px;
+input#post-title {
+    background-color: #FFFFFF;
+    color: #2D3748;
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 0%;
 }
 
 
-ul.features
-
-	{
-	list-style: square;
-	margin-top: 8px;
-	margin-bottom: 8px;
+textarea:hover, button:hover, button.comment-button:hover, button#submit:hover, input:hover {
+    background-color: #F0F4F8;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-p {
-	margin-top: 16px;
+.filter-options button:hover {
+    background-color: #45B8B0;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(78, 205, 196, 0.3);
 }
 
-table.majorproduct {
-	border: 1px Black;
-	color: Black;
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-A.subtle {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	color: black;
-	font-weight: bold;
-	text-decoration: none;
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-A.subtle:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	color: black;
-	font-weight: bold;
-	text-decoration: underline;
+body.light-mode {
+    background-color: #F0F4F8;
+    color: #2D3748;
 }
 
-A.subtle:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	color: black;
-	font-weight: bold;
-	text-decoration: underline;
-}
-.background	{ 
-		background: URL(http://www.stardock.com/products/impressioncreator/images/background.jpg);
-		background-repeat: no-repeat;
-}
-.linkbar		
-{
-		font-family: Tahoma;
-		font-size: 14px;
-		line-height: 14px;
-		color: #B38722;
-		text-decoration: none;
-		font-weight: normal
-}
-a.linkbar		{ text-decoration: none; }
-a.linkbar:HOVER	{ 
-		font-weight: bold;
-		text-decoration: none; 
-		color: #9F730D;
-		font-size: 14px;
-		line-height: 14px;
-		font-family: Tahoma;
-}
-a.linkbar:LINK	{ text-decoration: none; }
-.footerbar	{
-		font-family: Arial;
-		font-size: 10px;
+body.dark-mode {
+    background-color: #2D3748;
 }
 
-
-.QuickLinks, A.QuickLinks, A:ACTIVE.QuickLinks, A:VISITED.QuickLinks { font-weight: normal; color: #000066; text-decoration: none; }
-A:HOVER.QuickLinks { text-decoration: underline; font-weight: normal; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-DIV, TABLE { font-family: Arial; font-size: 12px; color: #FFFFFF; }
-
-H1, H2, H3, H4, H5 { color: #FFFFFF; }
-
-A, A:HOVER, A:VISITED, A:ACTIVE { color: #FFFFFF; font-family: Arial; font-weight: bold; font-size: 12px; }
-
-.SiteHeader_MenuShadow { height: 5px; line-height: 5px; }
-
-.ShowCaseBox_Outter { width: 757px; height: 480px; }
-.ShowCaseBox_RED_Outter { width: 757px; height: 480px; }
-.ShowCaseBox_RED_Shorter_Outter { width: 757px; height: 194px; }
-.ShowCaseBox_RED_Outter_Left { width: 757px; height: 480px; }
-.ShowCaseBox_RED_Shorter_Outter_Left { width: 757px; height: 194px; }
-
-.ShowCaseBox_Brown_Outter { width: 757px; height: 480px; }
-.ShowCaseBox_Brown_Shorter_Outter { width: 757px; height: 194px; }
-
-.ShowCaseBox_Brown_Outter_Left { width: 757px; height: 480px; }
-.ShowCaseBox_Brown_Shorter_Outter_Left { width: 757px; height: 194px; }
-
-.ShowCaseBox_ROYAL_Outter { width: 757px; height: 480px; }
-.ShowCaseBox_ROYAL_Shorter_Outter { width: 757px; height: 194px; }
-
-.ShowCaseBox_ROYALLEFT_Outter { width: 757px; height: 480px; }
-.ShowCaseBox_ROYALLEFT_Shorter_Outter { width: 757px; height: 194px; }
-
-.ShowCaseBox_ROYALLEFT_Outter { width: 757px; height: 480px; }
-
-.ShowCaseBox_Taller_Outter { width: 757px; height: 549px; }
-.ShowCaseBox_Taller2_Outter { width: 757px; height: 549px; }
-.ShowCaseBox_Taller3_Outter { width: 757px; height: 549px; }
-.ShowCaseBox_Shorter_Outter { width: 757px; height: 194px; }
-.ShowCaseBox_Header { height: 122px; width: 757px; }
-.ShowCaseBox_Body { height: 284; width: 716px; margin-left: 32px; }
-.ShowCaseBox_Body1 { position: absolute; height: 284px; width: 716px; margin-left: 32px; }
-.ShowCaseBox_Taller_Body1 { position: absolute; height: 351px; width: 716px; margin-left: 32px; }
-.ShowCaseBox_Footer { height: 66; width: 716px; margin-left: 32px; }
-.ShowCaseBox_Footer1 { position: absolute; margin-top: 284px; height: 66; width: 716px; margin-left: 32px; }
-.ShowCaseBox_Shorter_Footer { position: absolute; margin-top: 0px; height: 66; width: 716px; margin-left: 32px; }
-.ShowCaseBox_Taller_Footer1 { position: absolute; margin-top: 351px; height: 66; width: 716px; margin-left: 32px; }
-
-.SubShowCaseBox_Outter { margin-top: 2px; margin-bottom: 2px; }
-.SubShowCaseBox_Header { height: 73px; width: 757px; }
-.SubShowCaseBox_Body { width: 757px; }
-.SubShowCaseBox_BodyContent { margin-left: 40px; width: 700px; font-size: 12px; padding-top: 10px; padding-bottom: 10px; }
-.SubShowCaseBox_Footer { height: 20; width: 757px; }
-
-.SubShowCaseBox_BodyContent_Long { margin-left: 40px; width: 911px; font-size: 12px; padding-top: 10px; padding-bottom: 10px; }
-
-.SubShowCaseBox_Header_Long { height: 73px; width: 991px; padding-left: 3px; }
-
-.SubShowCaseBox_Header_Left { height: 73px; width: 757px; margin-left: -18px; }
-
-.SubShowCaseBox_Body_Long { width: 991px; }
-.SubShowCaseBox_Footer_Long { height: 20; width: 991px; }
-
-.SubShowCaseBox_RED_Header { height: 73px; width: 757px; }
-.SubShowCaseBox_RED_Body { width: 757px; }
-.SubShowCaseBox_RED_Footer { height: 20; width: 757px; }
-
-.SubShowCaseBox_RED_Header_Left { height: 73px; width: 757px; }
-.SubShowCaseBox_RED_Body_Left { width: 757px; }
-.SubShowCaseBox_RED_Footer_Left { height: 20; width: 757px; }
-
-.SubShowCaseBox_Brown_Header { height: 73px; width: 757px; }
-.SubShowCaseBox_Brown_Body { width: 757px; }
-.SubShowCaseBox_Brown_Footer { height: 20; width: 757px; }
-
-.SubShowCaseBox_Brown_Header_Left { height: 73px; width: 757px; }
-.SubShowCaseBox_Brown_Body_Left { width: 757px; }
-.SubShowCaseBox_Brown_Footer_Left { height: 20; width: 757px; }
-
-.SubShowCaseBox_ROYAL_Header { height: 73px; width: 757px; }
-.SubShowCaseBox_ROYAL_Body { width: 757px; }
-.SubShowCaseBox_ROYAL_Footer { height: 20; width: 757px; }
-
-.SubShowCaseBox_ROYALLEFT_Header { height: 73px; width: 757px; }
-.SubShowCaseBox_CERUL_Header { height: 73px; width: 757px; }
-
-.SubShowCaseBox_ROYALLEFT_Body { width: 757px; }
-.SubShowCaseBox_ROYALLEFT_Footer { height: 20; width: 757px; }
-
-
-.LinkBarBox_Outter { width: 233px; }
-.LinkBarBox_MainLinksHeader { width: 233px; }
-.LinkBarBox_SubLinksHeader { width: 233px; }
-
-.LinkBarBox_SubLinksHeaderRegion { margin-left: 15px; width: 180px; font-family: Arial; font-size: 13px; font-weight: normal; color: #FFFFFF;text-decoration: none; }
-
-.LinkBarBox_SubLinksHeaderRegion_Left { margin-left: 37px; width: 180px; font-family: Arial; font-size: 13px; font-weight: normal; color: #FFFFFF;text-decoration: none; }
-
-.LinkBarBox_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; }
-.LinkBarBox_MainLinksRegion { padding-left: 15px;}
-.LinkBarBox_MainLinksRegion_Left { padding-left: 37px;}
-.LinkBarBox_SubLinksHeaderBars { width: 180px; height: 30px; font-family: Arial; font-size: 13px; font-weight: bold; color: #FFFFFF; text-decoration: none; text-align: center; padding-top: 7px; }
-.LinkBarBox_Sep_PadUp { width: 180px; height: 1px; line-height: 1px; margin-top: 10px; }
-.LinkBarBox_Sep_PadNone { width: 180px; height: 1px; line-height: 1px; }
-.LinkBarBox_Sep_PadDown { width: 180px; height: 1px; line-height: 1px; margin-bottom: 10px; }
-
-.LinkBarBox_RED_Outter { width: 233px; }
-.LinkBarBox_RED_MainLinksHeader { width: 233px; }
-.LinkBarBox_RED_SubLinksHeader { width: 233px; }
-.LinkBarBox_RED_SubLinksHeaderRegion { margin-left: 15px; width: 180px; font-family: Arial; font-size: 13px; font-weight: normal; color: #FFFFFF; text-decoration: none; }
-
-/*0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000*/
-
-.LinkBarBox_RED_SubLinksHeaderRegion_Left { margin-left: 15px; width: 180px; font-family: Arial; font-size: 13px; font-weight: normal; color: #FFFFFF; text-decoration: none; }
-
-/*0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000*/
-
-.LinkBarBox_RED_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; }
-.LinkBarBox_RED_SubLinksFooter_Left  { width: 233px; height: 13px; line-height: 13px; }
-
-.LinkBarBox_RED_MainLinksHeader_Left { background-image: url(/images/TheEdge2/linkbar.red.mainlinks.header_left.png); background-repeat: no-repeat; background-position: left top; }
-
-
-.LinkBarBox_Brown_Outter { width: 233px; }
-.LinkBarBox_Brown_MainLinksHeader { width: 233px; }
-.LinkBarBox_Brown_SubLinksHeader { width: 233px; }
-.LinkBarBox_Brown_SubLinksHeaderRegion { margin-left: 15px; width: 180px; font-family: Arial; font-size: 13px; font-weight: normal; color: #FFFFFF; text-decoration: none; }
-.LinkBarBox_Brown_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; }
-
-.LinkBarBox_Brown_Outter_Left { width: 233px; }
-.LinkBarBox_Brown_MainLinksHeader_Left { width: 233px; }
-.LinkBarBox_Brown_SubLinksHeader_Left { width: 233px; }
-.LinkBarBox_Brown_SubLinksHeaderRegion_Left { margin-left: 15px; width: 180px; font-family: Arial; font-size: 13px; font-weight: normal; color: #FFFFFF; text-decoration: none; }
-.LinkBarBox_Brown_SubLinksFooter_Left { width: 233px; height: 13px; line-height: 13px; }
-
-.LinkBarBox_ROYAL_Outter { width: 233px; }
-.LinkBarBox_ROYAL_MainLinksHeader { width: 233px; }
-.LinkBarBox_ROYAL_SubLinksHeader { width: 233px; }
-.LinkBarBox_ROYAL_SubLinksHeaderRegion { margin-left: 15px; width: 180px; font-family: Arial; font-size: 13px; font-weight: normal; color: #FFFFFF; text-decoration: none; }
-.LinkBarBox_ROYAL_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; }
-
-
-.LinkBarBox_ROYALLEFT_Outter { width: 233px; }
-.LinkBarBox_ROYALLEFT_MainLinksHeader { width: 233px; }
-.LinkBarBox_ROYALLEFT_SubLinksHeader { width: 233px; }
-.LinkBarBox_ROYALLEFT_SubLinksHeaderRegion { margin-left: 15px; width: 180px; font-family: Arial; font-size: 13px; font-weight: normal; color: #FFFFFF; text-decoration: none; }
-.LinkBarBox_ROYALLEFT_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; }
-
-
-.LinkBarBox_MainLink_UP { position: absolute; width: 180px; height: 29px; cursor: pointer; text-align: center; padding-top: 5px; font-family: Arial; font-size: 13px; font-weight: bold; color: #FFFFFF; text-decoration: none; }
-.LinkBarBox_MainLink_DOWN { position: absolute; width: 180px; height: 29px; cursor: pointer; text-align: center; padding-top: 5px; font-family: Arial; font-size: 13px; font-weight: bold; color: #FFFFFF; text-decoration: none; }
-.LinkBarBox_MainLink_Red_UP { position: absolute; width: 180px; height: 29px; cursor: pointer; text-align: center; padding-top: 5px; font-family: Arial; font-size: 13px; font-weight: bold; color: #FFFFFF; text-decoration: none; }
-.LinkBarBox_MainLink_Red_DOWN { position: absolute; width: 180px; height: 29px; cursor: pointer; text-align: center; padding-top: 5px; font-family: Arial; font-size: 13px; font-weight: bold; color: #FFFFFF; text-decoration: none; }
-
-.LinkBarBox_MainLink_Brown_UP { position: absolute; width: 180px; height: 29px; cursor: pointer; text-align: center; padding-top: 5px; font-family: Arial; font-size: 13px; font-weight: bold; color: #FFFFFF; text-decoration: none; }
-.LinkBarBox_MainLink_Brown_DOWN { position: absolute; width: 180px; height: 29px; cursor: pointer; text-align: center; padding-top: 5px; font-family: Arial; font-size: 13px; font-weight: bold; color: #FFFFFF; text-decoration: none; }
-
-
-.LinkBarBox_MainLink_DarkRed_UP { position: absolute; width: 180px; height: 29px; cursor: pointer; text-align: center; padding-top: 5px; font-family: Arial; font-size: 13px; font-weight: bold; color: #FFFFFF; text-decoration: none; }
-.LinkBarBox_MainLink_DarkRed_DOWN { position: absolute; width: 180px; height: 29px; cursor: pointer; text-align: center; padding-top: 5px; font-family: Arial; font-size: 13px; font-weight: bold; color: #FFFFFF; text-decoration: none; }
-
-
-.LinkBarBox_MoreRegion { text-align: right; width: 170px; }
-.A_LinkBarBox_More, A.A_LinkBarBox_More, A.A_LinkBarBox_More:ACTIVE, A.A_LinkBarBox_More:VISITED { font-size: 11px; font-family: Arial; text-decoration: none; font-weight: bold; color: #FFFFFF; background-image: url(/images/TheEdge2/bullet.white.gif); background-repeat: no-repeat; background-position: right center; padding-right: 20px; }
-A.A_LinkBarBox_More:HOVER { font-weight: bold; font-size: 11px; font-family: Arial; text-decoration: underline; color: #FFFFFF; }
-
-.A_LinkBarBox_MainLink, A.A_LinkBarBox_MainLink { font-family: Arial; font-size: 13px; font-weight: bold; color: #FFFFFF; text-decoration: none; }
-A:HOVER.A_LinkBarBox_MainLink { font-family: Arial; font-size: 13px; font-weight: bold; color: #FFFFFF; text-decoration: none; }
-
-.ShowCaseBox_FooterText { position: absolute; margin-left: 10px; margin-top: 9px; width: 400px; height: 57px; font-size: 12px; }
-.ShowCaseBox_FooterPrice { font-weight: bold; font-size: 13px; margin-bottom: 5px; letter-spacing: 1px; }
-.ShowCaseBox_FooterPriceBuy { font-weight: bold; font-size: 13px; margin-bottom: 5px; letter-spacing: 1px; position: absolute; margin-top: -5px; margin-left: 550px;  text-align: left; width: 200px; }
-
-.SubShowCaseBox_BreifContent { position: absolute; margin-top: 45px; margin-left: 40px; }
-.SubShowCaseBox_BreifContentText { font-size: 13px; }
-
-.Tab_Spacer { float: left; width: 10px; height: 26px; }
-.Tab_OutterRegion { position: absolute; margin-top: 10px; margin-left: 29px; width: 732px; height: 50px; }
-.Tab_Left_ON { float: left; width: 32px; height: 26px; }
-.Tab_Left_OFF { float: left; width: 32px; height: 26px; }
-.Tab_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; }
-.Tab_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; }
-.Tab_Right_ON { float: left; width: 32px; height: 26px; }
-.Tab_Right_OFF { float: left; width: 32px; height: 26px; }
-.Tab_Spacer_OFF { float: left; width: 32px; height: 26px; }
-
-.Tab_RED_Spacer { float: left; width: 10px; height: 26px; }
-
-.Tab_Brown_Spacer { float: left; width: 10px; height: 26px; }
-
-.Tab_RED_Left_ON { float: left; width: 32px; height: 26px; }
-.Tab_RED_Left_OFF { float: left; width: 32px; height: 26px; }
-.Tab_RED_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; }
-.Tab_RED_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; }
-.Tab_RED_Right_ON { float: left; width: 32px; height: 26px; }
-.Tab_RED_Right_OFF { float: left; width: 32px; height: 26px; }
-.Tab_RED_Spacer_OFF { float: left; width: 32px; height: 26px; }
-
-.Tab_Brown_Left_ON { float: left; width: 32px; height: 26px; }
-.Tab_Brown_Left_OFF { float: left; width: 32px; height: 26px; }
-.Tab_Brown_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; }
-.Tab_Brown_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; }
-.Tab_Brown_Right_ON { float: left; width: 32px; height: 26px; }
-.Tab_Brown_Right_OFF { float: left; width: 32px; height: 26px; }
-.Tab_Brown_Spacer_OFF { float: left; width: 32px; height: 26px; }
-
-.Tab_ROYAL_Left_ON { float: left; width: 32px; height: 26px; }
-.Tab_ROYAL_Left_OFF { float: left; width: 32px; height: 26px; }
-.Tab_ROYAL_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; }
-.Tab_ROYAL_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; }
-.Tab_ROYAL_Right_ON { float: left; width: 32px; height: 26px; }
-.Tab_ROYAL_Right_OFF { float: left; width: 32px; height: 26px; }
-.Tab_ROYAL_Spacer_OFF { float: left; width: 32px; height: 26px; }
-
-
-.Tab_ROYALLEFT_Left_ON { float: left; width: 32px; height: 26px; }
-.Tab_ROYALLEFT_Left_OFF { float: left; width: 32px; height: 26px; }
-.Tab_ROYALLEFT_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; }
-.Tab_ROYALLEFT_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; }
-.Tab_ROYALLEFT_Right_ON { float: left; width: 32px; height: 26px; }
-.Tab_ROYALLEFT_Right_OFF { float: left; width: 32px; height: 26px; }
-.Tab_ROYALLEFT_Spacer_OFF { float: left; width: 32px; height: 26px; }
-
-
-.Footer_Constraints { width: 990px; position: absolute; margin-top: 10px; }
-.FooterLnkRegion_1 { height:29px; width: 990px; margin-top: 10px; }
-.FooterLnkRegion_2 { }
-.FooterLnkRegion_3 { position: absolute; margin-left: 123px;  }
-.FooterTextLinkRegion  { margin-top: 20px; text-align: center; font-size: 11px; }
-.FooterCopyrightRegion { margin-top: 10px; margin-bottom: 20px; text-align: center; font-size: 11px; }
-.FooterLnk_Stardock_UP { cursor: pointer; position: absolute; width: 143px; height: 36px; margin-top: 1px; margin-left: 0px;  }
-.FooterLnk_Stardock_DOWN { cursor: pointer; position: absolute; width: 143px; height: 36px; margin-top: 1px; margin-left: 0px;  }
-.FooterLnk_WC_UP { cursor: pointer; position: absolute; width: 158px; height: 36px; margin-top: 1px; margin-left: -15px;  }
-.FooterLnk_WC_DOWN { cursor: pointer; position: absolute; width: 158px; height: 36px; margin-top: 1px; margin-left: -15px;  }
-.FooterLnk_TotalGaming_UP { cursor: pointer; position: absolute; width: 158px; height: 36px; margin-top: 1px; margin-left: 143px; }
-.FooterLnk_TotalGaming_DOWN { cursor: pointer; position: absolute; width: 158px; height: 36px; margin-top: 1px; margin-left: 143px; }
-.FooterLnk_StardockDesign_UP { cursor: pointer; position: absolute; width: 187px; height: 36px; margin-top: 1px; margin-left: 301px; }
-.FooterLnk_StardockDesign_DOWN { cursor: pointer; position: absolute; width: 187px; height: 36px; margin-top: 1px; margin-left: 301px; }
-.FooterLnk_JoeUser_UP { cursor: pointer; position: absolute; width: 133px; height: 36px; margin-top: 1px; margin-left: 488px; }
-.FooterLnk_JoeUser_DOWN { cursor: pointer; position: absolute; width: 133px; height: 36px; margin-top: 1px; margin-left: 488px; }
-.FooterLnk_MyColors_UP { cursor: pointer; position: absolute; width: 144px; height: 36px; margin-top: 1px; margin-left: 621px; }
-.FooterLnk_MyColors_DOWN { cursor: pointer; position: absolute; width: 144px; height: 36px; margin-top: 1px; margin-left: 621px; }
-.FooterTextLnk, A.FooterTextLnk, A.FooterTextLnk:VISITED {  text-decoration: underline; color: #FFFFFF; font-weight: bold; }
-A:HOVER.FooterTextLnk { text-decoration: underline; color: #FFFFFF; font-weight: bold; text-decoration: none;  }
-
-.Adobe_Reader { width: 43px; height: 50px; border: 0px; }
-
-.PressRelease {width: 175px; height: 255px; }
-
-.IntelSB { width: 130px; height: 85px; border: 0px; }
-
-
-.ShowCaseBox_Body1_Left { position: absolute;  height: 284px; width: 716px; margin-left: 22px; }
-.ShowCaseBox_Body2_Left { position: absolute;  height: 284px; width: 716px; margin-left: 16px; }
-.ShowCaseBox_Shorter_Footer_Left { position: absolute; margin-top: 0px; height: 66px; width: 716px; margin-left: 22px; }
-.ShowCaseBox_Footer1_Left { position: absolute; margin-top: 284px; height: 66; width: 716px; margin-left: 22px; }
-.ShowCaseBox_Footer2_Left { position: absolute; margin-top: 0px; height: 66; width: 716px; margin-left: 22px; }
-.SubShowCaseBox_BodyContent_Left { margin-left: 20px; width: 700px; font-size: 12px; padding-top: 10px; padding-bottom: 10px; }
-.SubShowCaseBox_BreifContent_Left { position: absolute; margin-top: 45px; margin-left: 20px; }
-.Tab_OutterRegion_Left { position: absolute; margin-top: 10px; margin-left: 10px; width: 732px; height: 50px; }
-
-/*0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000*/
-
-
-.ShowCaseBox_CERUL_Outter { width: 757px; height: 480px; background-image: url(/images/TheEdge2/mainbox.cerul.png); background-repeat: no-repeat; background-position: left top; }
-
-.ShowCaseBox_CERUL_Shorter_Outter { width: 757px; height: 194px; background-image: url(/images/TheEdge2/mainbox_shorter.cerul.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_CERUL_Header { height: 73px; width: 757px; background-image: url(/images/TheEdge2/submainbox.cerul.header.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_CERUL_Body { width: 757px; background-image: url(/images/TheEdge2/submainbox.cerul.body.png); background-repeat: repeat-y; background-position: left top; }
-
-.SubShowCaseBox_CERUL_Footer { height: 20; width: 757px; background-image: url(/images/TheEdge2/submainbox.cerul.footer.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_CERUL_SubLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar.cerul.sublinks.header.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_CERUL_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; background-image: url(/images/TheEdge2/linkbar.cerul.sublinks.footer.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_CERUL_MainLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar.cerul.mainlinks.header.png); background-repeat: no-repeat; background-position: left top; }
-
-
-.Tab_CERUL_Spacer { float: left; width: 10px; height: 26px; background-image: url(/images/TheEdge2/tab.red.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_CERUL_Left_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.red.left.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_CERUL_Left_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.red.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_CERUL_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; background-image: url(/images/TheEdge2/tab.red.center.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_CERUL_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; background-image: url(/images/TheEdge2/tab.red.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_CERUL_Right_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.red.right.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_CERUL_Right_OFF { float: left; width: 32px; height: 26px;  background-image: url(/images/TheEdge2/tab.red.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_CERUL_Spacer_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.red.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-
-
-/*00000000000000000000000000SKINSTUDIO00000000000000000000000000000000*/
-
-
-
-.ShowCaseBox_BabyBlue_Outter { width: 757px; height: 480px; background-image: url(/images/TheEdge2/mainbox.bb.png); background-repeat: no-repeat; background-position: left top; }
-
-.ShowCaseBox_BabyBlue_Shorter_Outter { width: 757px; height: 194px; background-image: url(/images/TheEdge2/mainbox_shorter.bb.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_BabyBlue_Header { height: 73px; width: 757px; background-image: url(/images/TheEdge2/submainbox.bb.header.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_BabyBlue_Body { width: 757px; background-image: url(/images/TheEdge2/submainbox.bb.body.png); background-repeat: repeat-y; background-position: left top; }
-
-.SubShowCaseBox_BabyBlue_Footer { height: 20; width: 757px; background-image: url(/images/TheEdge2/submainbox.bb.footer.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_BabyBlue_SubLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar.bb.sublinks.header.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_BabyBlue_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; background-image: url(/images/TheEdge2/linkbar.bb.sublinks.footer.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_BabyBlue_MainLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar.bb.mainlinks.header.png); background-repeat: no-repeat; background-position: left top; }
-
-
-
-.Tab_BabyBlue_Spacer { float: left; width: 10px; height: 26px; background-image: url(/images/TheEdge2/tab.red.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_BabyBlue_Left_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.red.left.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_BabyBlue_Left_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.red.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_BabyBlue_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; background-image: url(/images/TheEdge2/tab.red.center.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_BabyBlue_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; background-image: url(/images/TheEdge2/tab.red.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_BabyBlue_Right_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.red.right.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_BabyBlue_Right_OFF { float: left; width: 32px; height: 26px;  background-image: url(/images/TheEdge2/tab.red.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_BabyBlue_Spacer_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.red.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-
-/*0000000000000000000000000000000SOUNDPACKAGER00000000000000000000000000000*/
-
-
-
-.ShowCaseBox_DeepBlue_Outter { width: 757px; height: 480px; background-image: url(/images/TheEdge2/mainbox.db.png); background-repeat: no-repeat; background-position: left top; }
-
-.ShowCaseBox_DeepBlue_Shorter_Outter { width: 757px; height: 194px; background-image: url(/images/TheEdge2/mainbox_shorter.db.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_DeepBlue_Header { height: 73px; width: 757px; background-image: url(/images/TheEdge2/submainbox.db.header.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_DeepBlue_Body { width: 757px; background-image: url(/images/TheEdge2/submainbox.db.body.png); background-repeat: repeat-y; background-position: left top; }
-
-.SubShowCaseBox_DeepBlue_Footer { height: 20; width: 757px; background-image: url(/images/TheEdge2/submainbox.db.footer.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_DeepBlue_SubLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar.db.sublinks.header.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_DeepBlue_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; background-image: url(/images/TheEdge2/linkbar.db.sublinks.footer.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_DeepBlue_MainLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar.db.mainlinks.header.png); background-repeat: no-repeat; background-position: left top; }
-
-
-.Tab_DeepBlue_Spacer { float: left; width: 10px; height: 26px; background-image: url(/images/TheEdge2/tab.db.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_DeepBlue_Left_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.db.left.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_DeepBlue_Left_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.db.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_DeepBlue_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; background-image: url(/images/TheEdge2/tab.db.center.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_DeepBlue_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; background-image: url(/images/TheEdge2/tab.db.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_DeepBlue_Right_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.db.right.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_DeepBlue_Right_OFF { float: left; width: 32px; height: 26px;  background-image: url(/images/TheEdge2/tab.db.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_DeepBlue_Spacer_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.db.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-
-/*000000000000000000000000000000000OBJECTDESKTOP0000000000000000000000000000000000000000000*/
-
-.ShowCaseBox_Purp_Outter { width: 757px; height: 480px; background-image: url(/images/TheEdge2/mainbox.purp.png); background-repeat: no-repeat; background-position: left top; }
-
-.ShowCaseBox_Purp_Shorter_Outter { width: 757px; height: 194px; background-image: url(/images/TheEdge2/mainbox_shorter.purp.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Purp_Header { height: 73px; width: 757px; background-image: url(/images/TheEdge2/submainbox.purp.header.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Purp_Body { width: 757px; background-image: url(/images/TheEdge2/submainbox.purp.body.png); background-repeat: repeat-y; background-position: left top; }
-
-.SubShowCaseBox_Purp_Footer { height: 20; width: 757px; background-image: url(/images/TheEdge2/submainbox.purp.footer.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Purp_SubLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar.purp.sublinks.header.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Purp_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; background-image: url(/images/TheEdge2/linkbar.purp.sublinks.footer.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Purp_MainLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar.purp.mainlinks.header.png); background-repeat: no-repeat; background-position: left top; }
-
-.Tab_Purp_Spacer { float: left; width: 10px; height: 26px; background-image: url(/images/TheEdge2/tab.purp.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Purp_Left_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.purp.left.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Purp_Left_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.purp.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Purp_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; background-image: url(/images/TheEdge2/tab.purp.center.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Purp_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; background-image: url(/images/TheEdge2/tab.purp.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Purp_Right_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.purp.right.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Purp_Right_OFF { float: left; width: 32px; height: 26px;  background-image: url(/images/TheEdge2/tab.purp.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Purp_Spacer_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.purp.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-
-/*000000000000000000000000000000000000000CURSORFX0000000000000000000000000000000000000000000*/
-
-
-.ShowCaseBox_Yellow_Outter { width: 757px; height: 480px; background-image: url(/images/TheEdge2/mainbox_yellow.png); background-repeat: no-repeat; background-position: left top; }
-
-.ShowCaseBox_Yellow_Shorter_Outter { width: 757px; height: 194px; background-image: url(/images/TheEdge2/mainbox_shorter_yellow.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Yellow_Header { height: 73px; width: 757px; background-image: url(/images/TheEdge2/submainbox_header_yellow.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Yellow_Body { width: 757px; background-image: url(/images/TheEdge2/submainbox_body_yellow.png); background-repeat: repeat-y; background-position: left top; }
-
-.SubShowCaseBox_Yellow_Footer { height: 20; width: 757px; background-image: url(/images/TheEdge2/submainbox_footer_yellow.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Yellow_SubLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_sublinks_header_yellow.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Yellow_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; background-image: url(/images/TheEdge2/linkbar_sublinks_footer_yellow.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Yellow_MainLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_mainlinks_header_yellow.png); background-repeat: no-repeat; background-position: left top; }
-
-.Tab_Yellow_Spacer { float: left; width: 10px; height: 26px; background-image: url(/images/TheEdge2/tab.yellow.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Yellow_Left_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.yellow.left.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Yellow_Left_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.yellow.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Yellow_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; background-image: url(/images/TheEdge2/tab.yellow.center.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Yellow_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; background-image: url(/images/TheEdge2/tab.yellow.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Yellow_Right_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.yellow.right.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Yellow_Right_OFF { float: left; width: 32px; height: 26px;  background-image: url(/images/TheEdge2/tab.yellow.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Yellow_Spacer_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.yellow.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-
-/*00000000000000000000000000000000000WINCUSTOMIZE00000000000000000000000000000*/
-
-
-.ShowCaseBox_Green_Outter { width: 757px; height: 480px; background-image: url(/images/TheEdge2/mainbox_green.png); background-repeat: no-repeat; background-position: left top; }
-
-.ShowCaseBox_Green_Shorter_Outter { width: 757px; height: 194px; background-image: url(/images/TheEdge2/mainbox_shorter_green.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Green_Header { height: 73px; width: 757px; background-image: url(/images/TheEdge2/submainbox_header_green.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Green_Body { width: 757px; background-image: url(/images/TheEdge2/submainbox_body_green.png); background-repeat: repeat-y; background-position: left top; }
-
-.SubShowCaseBox_Green_Footer { height: 20; width: 757px; background-image: url(/images/TheEdge2/submainbox_footer_green.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Green_SubLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_sublinks_header_green.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Green_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; background-image: url(/images/TheEdge2/linkbar_sublinks_footer_green.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Green_MainLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_mainlinks_header_green.png); background-repeat: no-repeat; background-position: left top; }
-
-.Tab_Green_Spacer { float: left; width: 10px; height: 26px; background-image: url(/images/TheEdge2/tab.green.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Green_Left_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.green.left.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Green_Left_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.green.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Green_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; background-image: url(/images/TheEdge2/tab.green.center.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Green_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; background-image: url(/images/TheEdge2/tab.green.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Green_Right_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.green.right.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Green_Right_OFF { float: left; width: 32px; height: 26px;  background-image: url(/images/TheEdge2/tab.green.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Green_Spacer_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.green.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-
-/*000000000000000000000000000000000000000000000000000000CONTROLCENTER000000000000000000000000000000000000000000000000*/
-
-
-
-.ShowCaseBox_CC_Outter { width: 757px; height: 480px; background-image: url(/images/TheEdge2/mainbox_cc.png); background-repeat: no-repeat; background-position: left top; }
-
-.ShowCaseBox_CC_Shorter_Outter { width: 757px; height: 194px; background-image: url(/images/TheEdge2/mainbox_shorter_cc.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_CC_Header { height: 73px; width: 757px; background-image: url(/images/TheEdge2/submainbox_header_cc.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_CC_Body { width: 757px; background-image: url(/images/TheEdge2/submainbox_body_cc.png); background-repeat: repeat-y; background-position: left top; }
-
-.SubShowCaseBox_CC_Footer { height: 20; width: 757px; background-image: url(/images/TheEdge2/submainbox_footer_cc.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_CC_SubLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_sublinks_header_cc.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_CC_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; background-image: url(/images/TheEdge2/linkbar_sublinks_footer_cc.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_CC_MainLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_mainlinks_header_cc.png); background-repeat: no-repeat; background-position: left top; }
-
-
-
-/*00000000000000000000000000000000000SKY BLUE00000000000000000000000000000*/
-
-
-.ShowCaseBox_Sky_Outter { width: 757px; height: 480px; background-image: url(/images/TheEdge2/mainbox_sky.png); background-repeat: no-repeat; background-position: left top; }
-
-.ShowCaseBox_Sky_Shorter_Outter { width: 757px; height: 194px; background-image: url(/images/TheEdge2/mainbox_shorter_sky.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Sky_Header { height: 73px; width: 757px; background-image: url(/images/TheEdge2/submainbox_header_sky.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Sky_Body { width: 757px; background-image: url(/images/TheEdge2/submainbox_body_sky.png); background-repeat: repeat-y; background-position: left top; }
-
-.SubShowCaseBox_Sky_Footer { height: 20; width: 757px; background-image: url(/images/TheEdge2/submainbox_footer_sky.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Sky_SubLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_sublinks_header_sky.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Sky_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; background-image: url(/images/TheEdge2/linkbar_sublinks_footer_sky.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Sky_MainLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_mainlinks_header_sky.png); background-repeat: no-repeat; background-position: left top; }
-
-.Tab_Sky_Spacer { float: left; width: 10px; height: 26px; background-image: url(/images/TheEdge2/tab.sky.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Sky_Left_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.sky.left.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Sky_Left_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.sky.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Sky_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; background-image: url(/images/TheEdge2/tab.sky.center.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Sky_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; background-image: url(/images/TheEdge2/tab.sky.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Sky_Right_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.sky.right.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Sky_Right_OFF { float: left; width: 32px; height: 26px;  background-image: url(/images/TheEdge2/tab.sky.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Sky_Spacer_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.sky.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-
-
-/*00000000000000000000000000000000000MYTOOLS00000000000000000000000000000*/
-
-
-.ShowCaseBox_Metal_Outter { width: 757px; height: 480px; background-image: url(/images/TheEdge2/mainbox_met.png); background-repeat: no-repeat; background-position: left top; }
-
-.ShowCaseBox_Metal_Shorter_Outter { width: 757px; height: 194px; background-image: url(/images/TheEdge2/mainbox_shorter_met.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Metal_Header { height: 73px; width: 757px; background-image: url(/images/TheEdge2/submainbox_header_met.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Metal_Body { width: 757px; background-image: url(/images/TheEdge2/submainbox_body_met.png); background-repeat: repeat-y; background-position: left top; }
-
-.SubShowCaseBox_Metal_Footer { height: 20; width: 757px; background-image: url(/images/TheEdge2/submainbox_footer_met.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Metal_SubLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_sublinks_header_met.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Metal_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; background-image: url(/images/TheEdge2/linkbar_sublinks_footer_met.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Metal_MainLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_mainlinks_header_met.png); background-repeat: no-repeat; background-position: left top; }
-
-.Tab_Metal_Spacer { float: left; width: 10px; height: 26px; background-image: url(/images/TheEdge2/tab.met.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Metal_Left_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.met.left.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Metal_Left_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.met.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Metal_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; background-image: url(/images/TheEdge2/tab.met.center.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Metal_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; background-image: url(/images/TheEdge2/tab.met.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Metal_Right_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.met.right.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Metal_Right_OFF { float: left; width: 32px; height: 26px;  background-image: url(/images/TheEdge2/tab.met.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Metal_Spacer_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.met.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-
-/*00000000000000000000000000000000000LIME00000000000000000000000000000*/
-
-
-.ShowCaseBox_Lime_Outter { width: 757px; height: 480px; background-image: url(/images/TheEdge2/mainbox_lime.png); background-repeat: no-repeat; background-position: left top; }
-
-.ShowCaseBox_Lime_Shorter_Outter { width: 757px; height: 194px; background-image: url(/images/TheEdge2/mainbox_shorter_lime.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Lime_Header { height: 73px; width: 757px; background-image: url(/images/TheEdge2/submainbox_header_lime.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Lime_Body { width: 757px; background-image: url(/images/TheEdge2/submainbox_body_lime.png); background-repeat: repeat-y; background-position: left top; }
-
-.SubShowCaseBox_Lime_Footer { height: 20; width: 757px; background-image: url(/images/TheEdge2/submainbox_footer_lime.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Lime_SubLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_sublinks_header_lime.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Lime_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; background-image: url(/images/TheEdge2/linkbar_sublinks_footer_lime.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Lime_MainLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_mainlinks_header_lime.png); background-repeat: no-repeat; background-position: left top; }
-
-.Tab_Lime_Spacer { float: left; width: 10px; height: 26px; background-image: url(/images/TheEdge2/tab.lime.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Lime_Left_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.lime.left.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Lime_Left_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.lime.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Lime_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; background-image: url(/images/TheEdge2/tab.lime.center.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Lime_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; background-image: url(/images/TheEdge2/lime.sky.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Lime_Right_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.lime.right.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Lime_Right_OFF { float: left; width: 32px; height: 26px;  background-image: url(/images/TheEdge2/tab.lime.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Lime_Spacer_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.lime.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-
-/*00000000000000000000000000000000000ICE00000000000000000000000000000*/
-
-
-.ShowCaseBox_Ice_Outter { width: 757px; height: 480px; background-image: url(/images/TheEdge2/mainbox_ice.png); background-repeat: no-repeat; background-position: left top; }
-
-.ShowCaseBox_Ice_Shorter_Outter { width: 757px; height: 194px; background-image: url(/images/TheEdge2/mainbox_shorter_ice.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Ice_Header { height: 73px; width: 757px; background-image: url(/images/TheEdge2/submainbox_header_ice.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Ice_Body { width: 757px; background-image: url(/images/TheEdge2/submainbox_body_ice.png); background-repeat: repeat-y; background-position: left top; }
-
-.SubShowCaseBox_Ice_Footer { height: 20; width: 757px; background-image: url(/images/TheEdge2/submainbox_footer_ice.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Ice_SubLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_sublinks_header_ice.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Ice_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; background-image: url(/images/TheEdge2/linkbar_sublinks_footer_ice.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Ice_MainLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_mainlinks_header_ice.png); background-repeat: no-repeat; background-position: left top; }
-
-.Tab_Ice_Spacer { float: left; width: 10px; height: 26px; background-image: url(/images/TheEdge2/tab.met.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Ice_Left_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.ice.left.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Ice_Left_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.met.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Ice_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; background-image: url(/images/TheEdge2/tab.ice.center.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Ice_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; background-image: url(/images/TheEdge2/tab.met.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Ice_Right_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.ice.right.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Ice_Right_OFF { float: left; width: 32px; height: 26px;  background-image: url(/images/TheEdge2/tab.met.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Ice_Spacer_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.met.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-
-/*00000000000000000000000000000000000MULTIPLICITY00000000000000000000000000000*/
-
-
-.ShowCaseBox_Grey_Outter { width: 757px; height: 480px; background-image: url(/images/TheEdge2/mainbox_grey.png); background-repeat: no-repeat; background-position: left top; }
-
-.ShowCaseBox_Grey_Shorter_Outter { width: 757px; height: 194px; background-image: url(/images/TheEdge2/mainbox_shorter_grey.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Grey_Header { height: 73px; width: 757px; background-image: url(/images/TheEdge2/submainbox_header_grey.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Grey_Body { width: 757px; background-image: url(/images/TheEdge2/submainbox_body_grey.png); background-repeat: repeat-y; background-position: left top; }
-
-.SubShowCaseBox_Grey_Footer { height: 20; width: 757px; background-image: url(/images/TheEdge2/submainbox_footer_grey.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Grey_SubLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_sublinks_header_grey.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Grey_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; background-image: url(/images/TheEdge2/linkbar_sublinks_footer_grey.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Grey_MainLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_mainlinks_header_grey.png); background-repeat: no-repeat; background-position: left top; }
-
-.Tab_Grey_Spacer { float: left; width: 10px; height: 26px; background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Grey_Left_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.grey.left.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Grey_Left_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Grey_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; background-image: url(/images/TheEdge2/tab.grey.center.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Grey_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Grey_Right_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.grey.right.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Grey_Right_OFF { float: left; width: 32px; height: 26px;  background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Grey_Spacer_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-
-/*00000000000000000000000000000000000ICONDEVELOPER00000000000000000000000000000*/
-
-
-.ShowCaseBox_Gry_Outter { width: 757px; height: 480px; background-image: url(/images/TheEdge2/mainbox_gry.png); background-repeat: no-repeat; background-position: left top; }
-
-.ShowCaseBox_Gry_Shorter_Outter { width: 757px; height: 194px; background-image: url(/images/TheEdge2/mainbox_shorter_gry.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Gry_Header { height: 73px; width: 757px; background-image: url(/images/TheEdge2/submainbox_header_gry.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Gry_Body { width: 757px; background-image: url(/images/TheEdge2/submainbox_body_gry.png); background-repeat: repeat-y; background-position: left top; }
-
-.SubShowCaseBox_Gry_Footer { height: 20; width: 757px; background-image: url(/images/TheEdge2/submainbox_footer_gry.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Gry_SubLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_sublinks_header_gry.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Gry_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; background-image: url(/images/TheEdge2/linkbar_sublinks_footer_gry.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Gry_MainLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_mainlinks_header_grey.png); background-repeat: no-repeat; background-position: left top; }
-
-.Tab_Gry_Spacer { float: left; width: 10px; height: 26px; background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Gry_Left_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.gry.left.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Gry_Left_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Gry_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; background-image: url(/images/TheEdge2/tab.gry.center.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Gry_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Gry_Right_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.gry.right.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Gry_Right_OFF { float: left; width: 32px; height: 26px;  background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Gry_Spacer_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-
-/*00000000000000000000000000000000000LEFT DIRECTSKIN00000000000000000000000000000*/
-
-
-.ShowCaseBox_Brownl_Outter { width: 757px; height: 480px; background-image: url(/images/TheEdge2/mainbox_brownl.png); background-repeat: no-repeat; background-position: left top; }
-
-.ShowCaseBox_Brownl_Shorter_Outter { width: 757px; height: 194px; background-image: url(/images/TheEdge2/mainbox_shorter_brownl.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Brownl_Header { height: 73px; width: 757px; background-image: url(/images/TheEdge2/submainbox_header_brownl.png); background-repeat: no-repeat; background-position: left top; }
-
-.SubShowCaseBox_Brownl_Body { width: 757px; background-image: url(/images/TheEdge2/submainbox_body_brownl.png); background-repeat: repeat-y; background-position: left top; }
-
-.SubShowCaseBox_Brownl_Footer { height: 20; width: 757px; background-image: url(/images/TheEdge2/submainbox_footer_brownl.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Brownl_SubLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_sublinks_header_brownl.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Brownl_SubLinksFooter { width: 233px; height: 13px; line-height: 13px; background-image: url(/images/TheEdge2/linkbar_sublinks_footer_brownl.png); background-repeat: no-repeat; background-position: left top; }
-
-.LinkBarBox_Brownl_MainLinksHeader { width: 233px; background-image: url(/images/TheEdge2/linkbar_mainlinks_header_brownl.png); background-repeat: no-repeat; background-position: left top; }
-
-.Tab_Brownl_Spacer { float: left; width: 10px; height: 26px; background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Brownl_Left_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.brownl.left.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Brownl_Left_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Brownl_Center_ON { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; background-image: url(/images/TheEdge2/tab.brownl.center.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Brownl_Center_OFF { float: left; width: auto; height: 26px; padding-top: 4px; font-size: 12px; font-weight: bold; letter-spacing: 1px; cursor: pointer; background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Brownl_Right_ON { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.brownl.right.down.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Brownl_Right_OFF { float: left; width: 32px; height: 26px;  background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-.Tab_Brownl_Spacer_OFF { float: left; width: 32px; height: 26px; background-image: url(/images/TheEdge2/tab.grey.strip.up.png); background-repeat: repeat-x; background-position: left top; }
-
-/*000FORTWEAKVISTA000*/
-.LinkBarBox_DeepBlue_MainLinksHeader2 { width: 233px; background-image: url(/images/TheEdge2/linkbar.red.mainlinks.header_left.png); background-repeat: no-repeat; background-position: left top; }
-/*000FORTWEAKVISTA000*/
+body.dark-mode {
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+}
+
+body.light-mode {
+    background-color: #F0F4F8;
+    color: #2D3748;
+}
+
+.intropost, .blog-post, section.blog-content {
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+body.dark-mode .intropost,
+body.dark-mode .blog-post,
+body.dark-mode #resultsList,
+body.dark-mode section.blog-content {
+    background-color: #2D3748;
+    color: #FFFFFF;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .intropost,
+body.light-mode .blog-post,
+body.light-mode #resultsList,
+body.light-mode section.blog-content {
+    background-color: #FFFFFF;
+    color: #2D3748;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.intropost h2, .blog-post h2, h2#post-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+body.dark-mode .intropost h2,
+body.dark-mode .blog-post h2,
+body.dark-mode h2#post-title {
+    color: #FF6B6B;
+}
+
+body.light-mode .intropost h2,
+body.light-mode .blog-post h2,
+body.light-mode h2#post-title {
+    color: #4ECDC4;
+}
+
+.intropost .content, p#post-content.content, p#post-intro.intro {
+    font-size: 1.1rem;
+}
+
+body.dark-mode .intropost .content,
+body.dark-mode p#post-content.content,
+body.dark-mode p#post-intro.intro {
+    color: #CBD5E0;
+}
+
+body.light-mode .intropost .content,
+body.light-mode p#post-content.content,
+body.light-mode p#post-intro.intro {
+    color: #4A5568;
+}
+
+.footer {
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+body.dark-mode .footer {
+    background-color: #2D3748;
+    color: #CBD5E0;
+}
+
+body.light-mode .footer {
+    background-color: #FF6B6B;
+    color: #4A5568;
+}
+
+body.dark-mode .header {
+    background-color: #2D3748;
+    color: #CBD5E0;
+}
+
+body.light-mode .header {
+    background-color: #FF6B6B;
+    color: #4A5568;
+}
+
+textarea, button, button.comment-button, button#submit, input#post-title, input#name, input#email {
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode textarea,
+body.dark-mode button,
+body.dark-mode button.comment-button,
+body.dark-mode button#submit,
+body.dark-mode input#post-title,
+body.dark-mode input#name,
+body.dark-mode input#email {
+    background-color: #4e5d75;
+    color: #FFFFFF;
+}
+
+body.light-mode textarea,
+body.light-mode button,
+body.light-mode button.comment-button,
+body.light-mode button#submit,
+body.light-mode input#post-title,
+body.light-mode input#name,
+body.light-mode input#email {
+    background-color: #FFFFFF;
+    color: #2D3748;
+}
+
+.blog-section,
+.blogpost-section {
+  margin-top: 5vh;
+  margin-bottom: 14vh;
+  max-width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeInUp 1s ease-out;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+}
+
+body.dark-mode .blog-section,
+body.dark-mode .blogpost-section,
+body.dark-mode .blog-preview {
+  background-color: #2D3748;
+  color: #FFFFFF;
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .blog-preview h2,
+body.dark-mode .blogpost-section h2 {
+  color: #FF6B6B;
+}
+
+body.dark-mode .blog-preview p,
+body.dark-mode .blogpost-section p {
+  color: #CBD5E0;
+}
+
+body.dark-mode .blog-preview .date,
+body.dark-mode .blogpost-section .date {
+  color: #A0AEC0;
+}
+
+body.dark-mode .blog-preview a.read-more {
+  background-color: #FF6B6B;
+  color: #FFFFFF;
+  transition: background 0.3s ease;
+}
+
+body.dark-mode .blog-preview a.read-more:hover {
+  background-color: #FF8787;
+}
+
+body.light-mode .blog-section,
+body.light-mode .blogpost-section,
+body.light-mode .blog-preview {
+  background-color: #FFFFFF;
+  color: #2D3748;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .blog-preview h2,
+body.light-mode .blogpost-section h2 {
+  color: #4ECDC4;
+}
+
+body.light-mode .blog-preview p,
+body.light-mode .blogpost-section p {
+  color: #4A5568;
+}
+
+body.light-mode .blog-preview .date,
+body.light-mode .blogpost-section .date {
+  color: #718096;
+}
+
+body.light-mode .blog-preview a.read-more {
+  background-color: #4ECDC4;
+  color: #FFFFFF;
+  transition: background 0.3s ease;
+}
+
+body.light-mode .blog-preview a.read-more:hover {
+  background-color: #76E0D9;
+}
+
+.blog-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.blog-preview {
+  border-radius: 1.5rem;
+  padding: 2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-preview:hover {
+  transform: translateY(-3px);
+}
+
+.blogpost-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blogpost-section p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.blogpost-section .date {
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+body {
+    --aero-bg-light: 
+        radial-gradient(circle at 15% 20%, rgba(120,220,255,0.55), transparent 60%),
+        radial-gradient(circle at 80% 30%, rgba(160,255,220,0.45), transparent 55%),
+        radial-gradient(circle at 50% 85%, rgba(255,255,255,0.6), transparent 70%),
+        linear-gradient(180deg, #cfefff 0%, #e9f8ff 55%, #ffffff 100%);
+
+    --aero-bg-dark:
+        radial-gradient(circle at 20% 20%, rgba(90,160,255,0.35), transparent 60%),
+        radial-gradient(circle at 80% 30%, rgba(100,220,200,0.25), transparent 55%),
+        linear-gradient(180deg, #0b1f33 0%, #102c44 55%, #081522 100%);
+
+    --glass-light: rgba(255,255,255,0.18);
+    --glass-dark: rgba(40,80,120,0.45);
+
+    --text-light: #0a3b5f;
+    --text-dark: #e6f4ff;
+}
+
+body.light-mode {
+    background: var(--aero-bg-light) !important;
+}
+
+body.dark-mode {
+    background: var(--aero-bg-dark) !important;
+}
+
+body.light-mode,
+body.light-mode p,
+body.light-mode span,
+body.light-mode li {
+    color: var(--text-light) !important;
+}
+
+body.dark-mode,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode li {
+    color: var(--text-dark) !important;
+}
+
+.intropost,
+.blog-post,
+.blog-preview,
+.blogpost-section,
+.blog-section,
+section.blog-content,
+#resultsList {
+    background: var(--glass-light) !important;
+    backdrop-filter: blur(28px) saturate(190%);
+    -webkit-backdrop-filter: blur(28px) saturate(190%);
+
+    border: 1px solid rgba(255,255,255,0.55);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.9),
+        inset 0 -1px 1px rgba(255,255,255,0.25),
+        0 18px 45px rgba(0,120,200,0.25);
+}
+
+body.dark-mode .intropost,
+body.dark-mode .blog-post,
+body.dark-mode .blog-preview,
+body.dark-mode .blogpost-section,
+body.dark-mode section.blog-content,
+body.dark-mode #resultsList {
+    background: var(--glass-dark) !important;
+    border: 1px solid rgba(140,200,255,0.35);
+}
+
+.intropost::before,
+.blog-post::before,
+.blog-preview::before,
+.blogpost-section::before,
+section.blog-content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.6),
+        rgba(255,255,255,0.15) 45%,
+        rgba(255,255,255,0.05)
+    );
+}
+
+.header {
+    backdrop-filter: blur(26px) saturate(180%);
+    -webkit-backdrop-filter: blur(26px) saturate(180%);
+    border-bottom: 1px solid rgba(255,255,255,0.65);
+}
+
+body.light-mode .header {
+    background: linear-gradient(
+        180deg,
+        rgba(210,245,255,0.95),
+        rgba(130,200,240,0.9),
+        rgba(90,165,230,0.95)
+    ) !important;
+}
+
+body.dark-mode .header {
+    background: linear-gradient(
+        180deg,
+        rgba(50,110,160,0.9),
+        rgba(25,70,120,0.95)
+    ) !important;
+}
+
+body.light-mode .header,
+body.light-mode .header * {
+    color: #06314f !important;
+}
+
+body.dark-mode .header,
+body.dark-mode .header * {
+    color: #e6f4ff !important;
+}
+
+.navbar ul li a,
+#theme-toggle,
+button,
+button.comment-button,
+button#submit {
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.95),
+        rgba(165,225,255,0.9) 45%,
+        rgba(95,180,235,0.95)
+    ) !important;
+
+    color: #06314f !important;
+
+    border: 1px solid rgba(255,255,255,0.75);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,1),
+        inset 0 -2px 3px rgba(0,0,0,0.25),
+        0 8px 20px rgba(0,120,200,0.35);
+}
+
+body.dark-mode .navbar ul li a,
+body.dark-mode #theme-toggle,
+body.dark-mode button {
+    background: linear-gradient(
+        180deg,
+        rgba(120,190,255,0.9),
+        rgba(60,120,200,0.95)
+    ) !important;
+
+    color: #e6f4ff !important;
+}
+
+#searchInput {
+    background: inherit !important;
+    backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid rgba(255,255,255,0.75);
+}
+
+.footer {
+    backdrop-filter: blur(26px) saturate(180%);
+    border-top: 1px solid rgba(255,255,255,0.65);
+}
+
+body.light-mode .footer {
+    background: linear-gradient(
+        180deg,
+        rgba(200,245,255,0.9),
+        rgba(120,200,240,0.85),
+        rgba(80,160,225,0.9)
+    ) !important;
+    color: #06314f !important;
+}
+
+body.dark-mode .footer {
+    background: linear-gradient(
+        180deg,
+        rgba(45,95,145,0.95),
+        rgba(20,55,95,1)
+    ) !important;
+    color: #e6f4ff !important;
+}
+
+.intropost,
+.blog-post,
+.blog-preview,
+.blogpost-section,
+.blog-section,
+#searchInput,
+button,
+.navbar ul li a,
+.footer {
+    outline: 1px solid rgba(255,255,255,0.55);
+    outline-offset: -1px;
+}
+
+body.dark-mode {
+    background:
+        radial-gradient(circle at 15% 20%, rgba(120,190,255,0.35), transparent 60%),
+        radial-gradient(circle at 80% 30%, rgba(140,240,210,0.25), transparent 55%),
+        radial-gradient(circle at 50% 85%, rgba(255,255,255,0.12), transparent 70%),
+        linear-gradient(180deg, #132c45 0%, #1a3a5a 55%, #0f2236 100%) !important;
+}
+
+#searchInput {
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.95),
+        rgba(165,225,255,0.9) 45%,
+        rgba(95,180,235,0.95)
+    ) !important;
+
+    color: #06314f !important;
+
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+
+    border: 1px solid rgba(255,255,255,0.75);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,1),
+        inset 0 -2px 3px rgba(0,0,0,0.25),
+        0 8px 20px rgba(0,120,200,0.35);
+}
+
+body.dark-mode #searchInput {
+    background: linear-gradient(
+        180deg,
+        rgba(120,190,255,0.9),
+        rgba(60,120,200,0.95)
+    ) !important;
+
+    color: #e6f4ff !important;
+
+    border: 1px solid rgba(180,220,255,0.45);
+}
+
+#resultsList {
+    backdrop-filter: blur(26px) saturate(180%);
+    -webkit-backdrop-filter: blur(26px) saturate(180%);
+}
+
+#searchInput {
+    color: #06314f !important;
+}
+
+body.dark-mode #searchInput {
+    color: #e6f4ff !important;
+}
+
+#searchInput::placeholder {
+    color: rgba(6,49,79,0.6);
+}
+
+body.dark-mode #searchInput::placeholder {
+    color: rgba(230,244,255,0.65);
+}
