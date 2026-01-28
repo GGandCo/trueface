@@ -643,22 +643,68 @@ body.light-mode .blog-preview a.read-more:hover {
   display: block;
 }
 
-/* ===============================
-   FRUTIGER AERO VISUAL OVERLAY
-   (NO LAYOUT CHANGES)
-   =============================== */
+/* =====================================================
+   FRUTIGER AERO – FINAL VISUAL SYSTEM
+   (NO LAYOUT CHANGES – VISUAL ONLY)
+   ===================================================== */
 
-/* --- GLOBAL GLASS FEEL --- */
+/* =====================
+   COLOR VARIABLES
+   ===================== */
+
 body {
-    background:
+    --aero-bg-light: 
         radial-gradient(circle at 15% 20%, rgba(120,220,255,0.55), transparent 60%),
         radial-gradient(circle at 80% 30%, rgba(160,255,220,0.45), transparent 55%),
         radial-gradient(circle at 50% 85%, rgba(255,255,255,0.6), transparent 70%),
         linear-gradient(180deg, #cfefff 0%, #e9f8ff 55%, #ffffff 100%);
-    background-attachment: fixed;
+
+    --aero-bg-dark:
+        radial-gradient(circle at 20% 20%, rgba(90,160,255,0.35), transparent 60%),
+        radial-gradient(circle at 80% 30%, rgba(100,220,200,0.25), transparent 55%),
+        linear-gradient(180deg, #0b1f33 0%, #102c44 55%, #081522 100%);
+
+    --glass-light: rgba(255,255,255,0.18);
+    --glass-dark: rgba(40,80,120,0.45);
+
+    --text-light: #0a3b5f;
+    --text-dark: #e6f4ff;
 }
 
-/* --- ALL CONTENT PANELS → GLASS --- */
+/* =====================
+   BACKGROUND SWITCH
+   ===================== */
+
+body.light-mode {
+    background: var(--aero-bg-light) !important;
+}
+
+body.dark-mode {
+    background: var(--aero-bg-dark) !important;
+}
+
+/* =====================
+   GLOBAL TEXT SWITCH
+   ===================== */
+
+body.light-mode,
+body.light-mode p,
+body.light-mode span,
+body.light-mode li {
+    color: var(--text-light) !important;
+}
+
+body.dark-mode,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode li {
+    color: var(--text-dark) !important;
+}
+
+/* =====================
+   GLASS PANELS
+   ===================== */
+
 .intropost,
 .blog-post,
 .blog-preview,
@@ -666,18 +712,32 @@ body {
 .blog-section,
 section.blog-content,
 #resultsList {
-    background: rgba(255,255,255,0.18) !important;
-    backdrop-filter: blur(28px) saturate(190%) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+    background: var(--glass-light) !important;
+    backdrop-filter: blur(28px) saturate(190%);
+    -webkit-backdrop-filter: blur(28px) saturate(190%);
 
     border: 1px solid rgba(255,255,255,0.55);
+
     box-shadow:
-        inset 0 1px 1px rgba(255,255,255,0.85),
+        inset 0 1px 1px rgba(255,255,255,0.9),
         inset 0 -1px 1px rgba(255,255,255,0.25),
         0 18px 45px rgba(0,120,200,0.25);
 }
 
-/* --- GLASS SHINE LAYER --- */
+body.dark-mode .intropost,
+body.dark-mode .blog-post,
+body.dark-mode .blog-preview,
+body.dark-mode .blogpost-section,
+body.dark-mode section.blog-content,
+body.dark-mode #resultsList {
+    background: var(--glass-dark) !important;
+    border: 1px solid rgba(140,200,255,0.35);
+}
+
+/* =====================
+   AERO SHINE LAYER
+   ===================== */
+
 .intropost::before,
 .blog-post::before,
 .blog-preview::before,
@@ -687,122 +747,66 @@ section.blog-content::before {
     position: absolute;
     inset: 0;
     border-radius: inherit;
+    pointer-events: none;
+
     background: linear-gradient(
         135deg,
-        rgba(255,255,255,0.65),
-        rgba(255,255,255,0.15) 40%,
-        rgba(255,255,255,0.05) 60%
+        rgba(255,255,255,0.6),
+        rgba(255,255,255,0.15) 45%,
+        rgba(255,255,255,0.05)
     );
-    pointer-events: none;
 }
 
-/* --- HEADER / NAV → AERO BAR --- */
+/* =====================
+   HEADER – LIGHT & DARK
+   ===================== */
+
 .header {
+    backdrop-filter: blur(26px) saturate(180%);
+    -webkit-backdrop-filter: blur(26px) saturate(180%);
+    border-bottom: 1px solid rgba(255,255,255,0.65);
+}
+
+body.light-mode .header {
     background: linear-gradient(
         180deg,
-        rgba(200,245,255,0.95),
-        rgba(120,200,240,0.9),
-        rgba(80,160,225,0.95)
+        rgba(210,245,255,0.95),
+        rgba(130,200,240,0.9),
+        rgba(90,165,230,0.95)
     ) !important;
-
-    backdrop-filter: blur(25px) saturate(180%);
-    border-bottom: 1px solid rgba(255,255,255,0.7);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.9),
-        0 10px 30px rgba(0,120,200,0.35);
 }
 
-/* --- BUTTONS & NAV ITEMS → GEL / BUBBLES --- */
+body.dark-mode .header {
+    background: linear-gradient(
+        180deg,
+        rgba(50,110,160,0.9),
+        rgba(25,70,120,0.95)
+    ) !important;
+}
+
+/* =====================
+   HEADER TEXT
+   ===================== */
+
+body.light-mode .header,
+body.light-mode .header * {
+    color: #06314f !important;
+}
+
+body.dark-mode .header,
+body.dark-mode .header * {
+    color: #e6f4ff !important;
+}
+
+/* =====================
+   BUTTONS & NAV – BUBBLES
+   ===================== */
+
 .navbar ul li a,
 #theme-toggle,
 button,
 button.comment-button,
 button#submit {
-    background: linear-gradient(
-        180deg,
-        rgba(255,255,255,0.9),
-        rgba(160,225,255,0.85) 45%,
-        rgba(90,175,235,0.95)
-    ) !important;
-
-    color: #06314f !important;
-    border: 1px solid rgba(255,255,255,0.7);
-
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,1),
-        inset 0 -2px 3px rgba(0,0,0,0.25),
-        0 8px 20px rgba(0,120,200,0.35);
-}
-
-/* --- INPUTS → FROSTED GLASS --- */
-input,
-textarea {
-    background: rgba(255,255,255,0.6) !important;
-    backdrop-filter: blur(18px) saturate(160%);
-    border: 1px solid rgba(255,255,255,0.6);
-
-    box-shadow:
-        inset 0 1px 2px rgba(255,255,255,0.9),
-        0 6px 16px rgba(0,120,200,0.25);
-}
-
-/* --- TEXT COLORS → AERO PALETTE --- */
-h1, h2, h3 {
-    color: #0a3b5f !important;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.7);
-}
-
-p {
-    color: #123b55 !important;
-}
-
-/* --- HOVER → LIQUID LIFT --- */
-button:hover,
-.navbar ul li a:hover,
-.blog-preview:hover {
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,1),
-        0 14px 35px rgba(0,140,220,0.45);
-}
-
-/* --- DARK MODE → NIGHT AERO --- */
-body.dark-mode .intropost,
-body.dark-mode .blog-post,
-body.dark-mode .blog-preview,
-body.dark-mode section.blog-content {
-    background: rgba(40,80,120,0.45) !important;
-    border: 1px solid rgba(140,200,255,0.35);
-}
-
-/* ===============================
-   FRUTIGER AERO – FINAL POLISH
-   (Footer + Search + Bubble Edges)
-   =============================== */
-
-/* --- FOOTER → GLASS BAR --- */
-.footer {
-    background: linear-gradient(
-        180deg,
-        rgba(200,245,255,0.9),
-        rgba(120,200,240,0.85),
-        rgba(80,160,225,0.9)
-    ) !important;
-
-    backdrop-filter: blur(25px) saturate(180%);
-    -webkit-backdrop-filter: blur(25px) saturate(180%);
-
-    border-top: 1px solid rgba(255,255,255,0.65);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.9),
-        0 -10px 30px rgba(0,120,200,0.35);
-
-    color: #06314f !important;
-}
-
-/* --- SEARCH INPUT → SAME BUBBLE AS BUTTONS --- */
-#searchInput {
     background: linear-gradient(
         180deg,
         rgba(255,255,255,0.95),
@@ -812,9 +816,6 @@ body.dark-mode section.blog-content {
 
     color: #06314f !important;
 
-    backdrop-filter: blur(18px) saturate(160%);
-    -webkit-backdrop-filter: blur(18px) saturate(160%);
-
     border: 1px solid rgba(255,255,255,0.75);
 
     box-shadow:
@@ -823,70 +824,70 @@ body.dark-mode section.blog-content {
         0 8px 20px rgba(0,120,200,0.35);
 }
 
-/* Placeholder → milchig */
-#searchInput::placeholder {
-    color: rgba(6,49,79,0.6);
+/* Dark buttons */
+body.dark-mode .navbar ul li a,
+body.dark-mode #theme-toggle,
+body.dark-mode button {
+    background: linear-gradient(
+        180deg,
+        rgba(120,190,255,0.9),
+        rgba(60,120,200,0.95)
+    ) !important;
+
+    color: #e6f4ff !important;
 }
 
-/* --- RESULTS LIST → FLOATING GLASS PANEL --- */
-#resultsList {
-    background: rgba(255,255,255,0.22) !important;
+/* =====================
+   SEARCH INPUT
+   ===================== */
+
+#searchInput {
+    background: inherit !important;
+    backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid rgba(255,255,255,0.75);
+}
+
+/* =====================
+   FOOTER
+   ===================== */
+
+.footer {
     backdrop-filter: blur(26px) saturate(180%);
-    -webkit-backdrop-filter: blur(26px) saturate(180%);
-
-    border: 1px solid rgba(255,255,255,0.55);
-
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,0.9),
-        0 20px 45px rgba(0,120,200,0.35);
+    border-top: 1px solid rgba(255,255,255,0.65);
 }
 
-/* --- BUBBLE EDGE → CLEAR AERO OUTLINE --- */
+body.light-mode .footer {
+    background: linear-gradient(
+        180deg,
+        rgba(200,245,255,0.9),
+        rgba(120,200,240,0.85),
+        rgba(80,160,225,0.9)
+    ) !important;
+    color: #06314f !important;
+}
+
+body.dark-mode .footer {
+    background: linear-gradient(
+        180deg,
+        rgba(45,95,145,0.95),
+        rgba(20,55,95,1)
+    ) !important;
+    color: #e6f4ff !important;
+}
+
+/* =====================
+   BUBBLE OUTLINE / RIM
+   ===================== */
+
 .intropost,
 .blog-post,
 .blog-preview,
 .blogpost-section,
 .blog-section,
-section.blog-content,
-#resultsList,
+#searchInput,
+button,
+.navbar ul li a,
 .footer {
     outline: 1px solid rgba(255,255,255,0.55);
     outline-offset: -1px;
-}
-
-/* --- EXTRA AERO RIM LIGHT (BUTTONS & BUBBLES) --- */
-button,
-.navbar ul li a,
-#theme-toggle,
-.blog-preview,
-#searchInput {
-    position: relative;
-}
-
-button::after,
-.navbar ul li a::after,
-#theme-toggle::after,
-.blog-preview::after,
-#searchInput::after {
-    content: "";
-    position: absolute;
-    inset: 1px;
-    border-radius: inherit;
-    pointer-events: none;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.9),
-        inset 0 -1px 0 rgba(0,0,0,0.25);
-}
-
-/* --- DARK MODE FOOTER FIX --- */
-body.dark-mode .footer {
-    background: linear-gradient(
-        180deg,
-        rgba(60,110,160,0.9),
-        rgba(30,70,120,0.9)
-    ) !important;
-
-    color: #e6f4ff !important;
-    border-top: 1px solid rgba(160,210,255,0.35);
 }
