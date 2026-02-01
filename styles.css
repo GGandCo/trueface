@@ -71,7 +71,7 @@ input {
   background-color: #4ecdc4;
   color: #fff;
   border: none;
-  padding: 1rem 2rem;
+  padding: 1rem 1.8rem;
   border-radius: 2rem;
   font-size: 1rem;
   font-family: Montserrat, sans-serif;
@@ -80,7 +80,6 @@ input {
   display: flex;
   align-items: center;
   height: 3rem;
-  margin: 0 0.5rem;
   white-space: nowrap;
 }
 #searchInput:hover,
@@ -93,7 +92,6 @@ input {
 .navbar .search-container {
   position: relative;
   display: inline-block;
-  padding: 1rem 1rem;
 }
 #resultsList {
   position: absolute;
@@ -928,6 +926,9 @@ a, button, input, textarea, #resultsList li {
   -webkit-backdrop-filter: blur(22px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.45);
 }
+.header {
+  padding: 0.5rem;
+}
 .content-wrapper > .spacer {
   flex-grow: 1;
 }
@@ -1035,7 +1036,7 @@ body::before {
   -webkit-backdrop-filter: blur(18px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.35);
 }
-.retro-stamps img {
+.retro-stamps img, .retro-stamps a {
   height: 31px;
   image-rendering: pixelated;
   opacity: 0.9;
@@ -1047,4 +1048,50 @@ body::before {
 }
 body.dark-mode .retro-stamps {
   background: rgba(40, 80, 120, 0.25);
+}
+.navbar ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: flex-start;
+  align-content: flex-start;
+
+  max-width: max-content;
+  margin: 0 auto;
+
+  padding: 0.5rem 1rem;
+}
+.navbar button,
+.navbar #theme-toggle {
+  margin-top: 0 !important;
+  width: auto !important;
+  height: 3rem !important;
+}
+.navbar ul > * {
+  display: flex;
+  align-items: center !important;
+}
+.navbar ul {
+  gap: 1.1rem;
+}
+@media (max-width: 1200px) {
+  .navbar ul {
+    gap: 1.3rem;
+  }
+}
+@media (max-width: 900px) {
+  .navbar ul {
+    gap: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .navbar ul {
+    gap: 0.75rem;
+  }
+}
+@media (max-width: 400px) {
+  .navbar ul {
+    gap: 0.4rem;
+  }
 }
