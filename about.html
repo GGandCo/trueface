@@ -32,12 +32,36 @@
         </nav>
     </header>
 
-    <section class="Introduction">
-        <div class="intropost">
-            <h2>Test Title</h2>
-            <p>Test Content</p>
-        </div>
-    </section>
+<section class="Introduction">
+    <div class="intropost">
+        <h2>Good Question! Who am I?</h2>
+        <p>
+            I can give you a short answer or a long answer! But I can guarantee you the long answer will change in the future.
+        </p>
+
+        <h3>Short answer:</h3>
+        <ul class="short-answer">
+            <li><strong>Name:</strong> Gustav</li>
+            <li><strong>Age:</strong> 17</li>
+            <li><strong>Online Username:</strong> GGandCo</li>
+            <li><strong>Living in:</strong> You don't need to know that!</li>
+            <li><strong>Role:</strong> Student</li>
+            <li>
+                <strong>Interests:</strong>
+                <ul>
+                    <li>Nearly everything with tech, especially cyber security, web design, and old aesthetics like Frutiger Aero</li>
+                    <li>Sports: mainly swimming, sometimes running from responsibilities</li>
+                    <li>Collecting things like old tech and memories</li>
+                    <li>Music & media: whatever fits my mood</li>
+                    <li>Writing (I mean I'm trying! 😅)</li>
+                    <li>History class</li>
+                </ul>
+            </li>
+        </ul>
+        <h3>Long answer:</h3>
+        <p>Coming soon!... 😶</p>
+    </div>
+</section>
 
     <section class="retro-stamps">
         <a href="https://trueface.blog/"><img src="img/GGandCo's Button.png"></a>
@@ -65,37 +89,37 @@
     </div>
     <script>
 
-document.getElementById('theme-toggle').addEventListener('click', function () {
-    const body = document.body;
-    if (body.classList.contains('dark-mode')) {
-        body.classList.remove('dark-mode');
-        body.classList.add('light-mode');
-        this.textContent = 'Dark';
-        localStorage.setItem('theme', 'light');
-    } else {
-        body.classList.remove('light-mode');
-        body.classList.add('dark-mode');
-        this.textContent = 'Light';
-        localStorage.setItem('theme', 'dark');
-    }
-});
+                document.getElementById('theme-toggle').addEventListener('click', function () {
+                const body = document.body;
 
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    body.classList.add('light-mode');
+                    this.textContent = 'Dark';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.remove('light-mode');
+                    body.classList.add('dark-mode');
+                    this.textContent = 'Light';
+                    localStorage.setItem('theme', 'dark');
+                }
+                });
 
-window.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme');
-    const body = document.body;
-    const themeToggleButton = document.getElementById('theme-toggle');
-    
-    if (savedTheme === 'light') {
-        body.classList.remove('dark-mode');
-        body.classList.add('light-mode');
-        themeToggleButton.textContent = 'Dark';
-    } else {
-        body.classList.remove('light-mode');
-        body.classList.add('dark-mode');
-        themeToggleButton.textContent = 'Light';
-    }
-});
+                window.addEventListener('DOMContentLoaded', () => {
+                const savedTheme = localStorage.getItem('theme');
+                const body = document.body;
+                const themeToggleButton = document.getElementById('theme-toggle');
+
+                if (savedTheme === 'dark') {
+                    body.classList.add('dark-mode');
+                    body.classList.remove('light-mode');
+                    themeToggleButton.textContent = 'Light';
+                } else {
+                    body.classList.add('light-mode');
+                    body.classList.remove('dark-mode');
+                    themeToggleButton.textContent = 'Dark';
+                }
+                });
 
     </script>
     
