@@ -1095,3 +1095,49 @@ body.dark-mode .retro-stamps {
     gap: 0.4rem;
   }
 }
+.intropost h3 {
+  font-size: 1.6rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+.intropost .short-answer {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.intropost .short-answer li {
+  margin-bottom: 0.6rem;
+}
+.intropost .short-answer li ul {
+  list-style: circle;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+.intropost .short-answer li ul li {
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
+}
+.intropost .short-answer li strong {
+  font-weight: 700;
+}
+.intropost p,
+.short-answer li,
+.short-answer li ul li {
+    max-width: 700px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.intropost {
+    padding: 2rem 2.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.intropost h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
