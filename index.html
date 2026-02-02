@@ -19,7 +19,7 @@
 <body>
     <div class="content-wrapper">
             <header class="header">
-                <h1 class="title">Trueface</h1>
+                <h1 class="title">trueface</h1>
                 <nav class="navbar">
                     <ul>
                         <li><a href="blog.html">Blog</a></li>
@@ -32,12 +32,27 @@
                 </nav>
             </header>
 
-            <section class="Introduction">
-                <div class="intropost">
-                    <h2>Test Title</h2>
-                    <p>Test Content</p>
-                </div>
-            </section>
+<section class="Introduction">
+    <div class="intropost">
+        <h2>Welcome to Trueface</h2>
+        <p>
+            Trueface is my little corner of the web where my thoughts, ideas, and maybe experiments come together.
+            Think of it as my digital diary, tech playground, 
+            and just Frutiger Aero nostalgia. You may also click on the second button below to get to the Frutiger Aero Archive! ❤️
+        </p>
+        <br>
+        <p>
+            Here you'll find my daily dumb thoughts!
+            Some tiny tutorials and random things that I find funny,
+            and everything is shared in a way that's personal and without ads 😁! <i>and sometimes with spelling mistakes</i>
+        </p>
+        <br>
+        <p>
+            This website is a mix of my style, constantly evolving, 
+            just like me. Feel free to explore, get inspired, or just enjoy the aesthetic vibes.
+        </p>
+    </div>
+</section>
           
     <section class="retro-stamps">
         <a href="https://trueface.blog/"><img src="img/GGandCo's Button.png"></a>
@@ -65,8 +80,9 @@
             </div>
             <script>
 
-            document.getElementById('theme-toggle').addEventListener('click', function () {
+                document.getElementById('theme-toggle').addEventListener('click', function () {
                 const body = document.body;
+
                 if (body.classList.contains('dark-mode')) {
                     body.classList.remove('dark-mode');
                     body.classList.add('light-mode');
@@ -78,27 +94,26 @@
                     this.textContent = 'Light';
                     localStorage.setItem('theme', 'dark');
                 }
-            });
+                });
 
-            window.addEventListener('DOMContentLoaded', () => {
+                window.addEventListener('DOMContentLoaded', () => {
                 const savedTheme = localStorage.getItem('theme');
                 const body = document.body;
                 const themeToggleButton = document.getElementById('theme-toggle');
-                
-                if (savedTheme === 'light') {
-                    body.classList.remove('dark-mode');
-                    body.classList.add('light-mode');
-                    themeToggleButton.textContent = 'Dark';
-                } else {
-                    body.classList.remove('light-mode');
+
+                if (savedTheme === 'dark') {
                     body.classList.add('dark-mode');
+                    body.classList.remove('light-mode');
                     themeToggleButton.textContent = 'Light';
+                } else {
+                    body.classList.add('light-mode');
+                    body.classList.remove('dark-mode');
+                    themeToggleButton.textContent = 'Dark';
                 }
-            });
+                });
             
             </script>
             
 </body>
 
 </html>
-
