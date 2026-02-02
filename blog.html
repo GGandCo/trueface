@@ -95,36 +95,37 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-        document.getElementById('theme-toggle').addEventListener('click', function () {
-            const body = document.body;
-            if (body.classList.contains('dark-mode')) {
-                body.classList.remove('dark-mode');
-                body.classList.add('light-mode');
-                this.textContent = 'Dark';
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.classList.remove('light-mode');
-                body.classList.add('dark-mode');
-                this.textContent = 'Light';
-                localStorage.setItem('theme', 'dark');
-            }
-        });
+                document.getElementById('theme-toggle').addEventListener('click', function () {
+                const body = document.body;
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            const body = document.body;
-            const themeToggleButton = document.getElementById('theme-toggle');
-            
-            if (savedTheme === 'light') {
-                body.classList.remove('dark-mode');
-                body.classList.add('light-mode');
-                themeToggleButton.textContent = 'Dark';
-            } else {
-                body.classList.remove('light-mode');
-                body.classList.add('dark-mode');
-                themeToggleButton.textContent = 'Light';
-            }
-        });
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    body.classList.add('light-mode');
+                    this.textContent = 'Dark';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.remove('light-mode');
+                    body.classList.add('dark-mode');
+                    this.textContent = 'Light';
+                    localStorage.setItem('theme', 'dark');
+                }
+                });
+
+                window.addEventListener('DOMContentLoaded', () => {
+                const savedTheme = localStorage.getItem('theme');
+                const body = document.body;
+                const themeToggleButton = document.getElementById('theme-toggle');
+
+                if (savedTheme === 'dark') {
+                    body.classList.add('dark-mode');
+                    body.classList.remove('light-mode');
+                    themeToggleButton.textContent = 'Light';
+                } else {
+                    body.classList.add('light-mode');
+                    body.classList.remove('dark-mode');
+                    themeToggleButton.textContent = 'Dark';
+                }
+                });
 
 document.addEventListener("DOMContentLoaded", async function () {
     const searchInput = document.getElementById("searchInput");
@@ -204,4 +205,3 @@ if (blogList) {
     </script>
 </body>
 </html>
-
