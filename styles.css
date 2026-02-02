@@ -1136,8 +1136,8 @@ body.dark-mode .retro-stamps {
     margin: 0 auto;
 }
 .intropost h2 {
-    white-space: nowrap;
-    overflow: hidden;
     font-size: 2rem;
     margin-bottom: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
