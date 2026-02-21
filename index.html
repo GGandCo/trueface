@@ -30,35 +30,11 @@
                     </ul>
                 </nav>
             </header>
-<!-- 1. Banner Container, direkt in HTML -->
-<div id="keepandroidopen-root"></div>
+<!-- Banner-Container -->
+<div id="my-banner"></div>
 
-<!-- 2. Banner Script laden -->
-<script src="https://keepandroidopen.org/banner/kao-banner.js" defer></script>
-
-<!-- 3. Styles vom Banner schützen + optional verschieben -->
-<style>
-  /* Banner überlagert nicht mehr andere Styles */
-  #keepandroidopen-root .kao-banner {
-    all: initial; /* löscht nur Styles vom Rest der Seite */
-    position: fixed; /* damit es overlay bleibt */
-    top: 0;
-    left: 0;
-    z-index: 10; /* anpassen, falls andere Elemente darüber liegen */
-  }
-</style>
-
-<script defer>
-document.addEventListener('DOMContentLoaded', () => {
-  const root = document.getElementById('keepandroidopen-root');
-
-  // Move the banner behind other content (optional)
-  const banner = root.querySelector('.kao-banner');
-  if (banner) {
-    banner.style.zIndex = '1'; // Hintergrund
-  }
-});
-</script>
+<!-- Banner-Skript vom Server laden -->
+<script src="https://keepandroidopen.org/banner.js?lang=en&size=mini&id=my-banner" defer></script>
 <section class="Introduction">
     <div class="intropost">
         <h2>Welcome to Trueface</h2>
@@ -143,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
