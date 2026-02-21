@@ -30,7 +30,21 @@
                     </ul>
                 </nav>
             </header>
-
+<div id="keepandroidopen-banner"></div>
+<script>
+  // Banner ins eigene DIV laden
+  (function() {
+    var s = document.createElement('script');
+    s.src = 'https://keepandroidopen.org/banner.js';
+    s.async = true;
+    s.onload = function() {
+      if (window.KeepAndroidOpen) {
+        KeepAndroidOpen.init({ container: '#keepandroidopen-banner' });
+      }
+    };
+    document.body.appendChild(s);
+  })();
+</script>
 <section class="Introduction">
     <div class="intropost">
         <h2>Welcome to Trueface</h2>
@@ -52,14 +66,7 @@
         </p>
     </div>
 </section>
-<div id="banner-container"></div>
-<script>
-  const container = document.getElementById('banner-container');
-  const shadow = container.attachShadow({mode: 'open'});
-  const script = document.createElement('script');
-  script.src = 'https://keepandroidopen.org/banner.js';
-  shadow.appendChild(script);
-</script>
+
     <section class="retro-stamps">
         <a href="https://trueface.blog/"><img src="img/GGandCo's Button.png"></a>
         <a href="https://frutigeraeroarchive.org/"><img src="img/frutigeraeroarchive_button_legacy.png" alt="Frutiger Aero Archive"></a>
@@ -122,6 +129,7 @@
 </body>
 
 </html>
+
 
 
 
