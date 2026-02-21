@@ -1141,3 +1141,11 @@ body.dark-mode .retro-stamps {
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
+
+#keepandroidopen,
+iframe[src*="keepandroidopen"] {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
