@@ -52,7 +52,14 @@
         </p>
     </div>
 </section>
-<iframe src="https://keepandroidopen.org/banner.js" style="width:100%; border:none;"></iframe>
+<div id="banner-container"></div>
+<script>
+  const container = document.getElementById('banner-container');
+  const shadow = container.attachShadow({mode: 'open'});
+  const script = document.createElement('script');
+  script.src = 'https://keepandroidopen.org/banner.js';
+  shadow.appendChild(script);
+</script>
     <section class="retro-stamps">
         <a href="https://trueface.blog/"><img src="img/GGandCo's Button.png"></a>
         <a href="https://frutigeraeroarchive.org/"><img src="img/frutigeraeroarchive_button_legacy.png" alt="Frutiger Aero Archive"></a>
@@ -115,6 +122,7 @@
 </body>
 
 </html>
+
 
 
 
