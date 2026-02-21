@@ -1141,8 +1141,3 @@ body.dark-mode .retro-stamps {
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
-
-#keepandroidopen,
-#keepandroidopen * {
-  all: revert !important;
-}
