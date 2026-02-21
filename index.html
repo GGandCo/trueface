@@ -112,10 +112,21 @@
                 });
             
             </script>
-    <script src="https://keepandroidopen.org/banner.js"></script>
+    <div id="kao-host"></div>
+
+<script>
+  const host = document.getElementById("kao-host");
+  const shadow = host.attachShadow({ mode: "open" });
+
+  const script = document.createElement("script");
+  script.src = "https://keepandroidopen.org/banner.js";
+
+  shadow.appendChild(script);
+</script>
 </body>
 
 </html>
+
 
 
 
