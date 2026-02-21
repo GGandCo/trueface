@@ -30,20 +30,28 @@
                     </ul>
                 </nav>
             </header>
-<div id="keepandroidopen-banner"></div>
-<script>
-  // Banner ins eigene DIV laden
-  (function() {
-    var s = document.createElement('script');
-    s.src = 'https://keepandroidopen.org/banner.js';
-    s.async = true;
-    s.onload = function() {
-      if (window.KeepAndroidOpen) {
-        KeepAndroidOpen.init({ container: '#keepandroidopen-banner' });
-      }
-    };
-    document.body.appendChild(s);
-  })();
+<!-- 1. Kao Banner Skript laden -->
+<script src="https://keepandroidopen.org/banner/kao-banner.js" defer></script>
+
+<!-- 2. JS zum Säubern -->
+<script defer>
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new MutationObserver(() => {
+    const banner = document.querySelector('.kao-banner');
+    if (!banner) return;
+
+    // Entferne alles, was nicht von der Website selbst kommt
+    // z.B. Inline-Styles, die Aero oder dein globales CSS gesetzt hat
+    banner.removeAttribute('style'); 
+    banner.querySelectorAll('*').forEach(el => el.removeAttribute('style'));
+
+    // Das Banner-Skript lädt danach sein eigenes CSS automatisch
+    // Observer stoppen
+    observer.disconnect();
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+});
 </script>
 <section class="Introduction">
     <div class="intropost">
@@ -129,6 +137,7 @@
 </body>
 
 </html>
+
 
 
 
