@@ -1141,3 +1141,13 @@ body.dark-mode .retro-stamps {
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
+
+#keepandroidopen-banner,
+#keepandroidopen-banner * {
+  all: initial !important; /* löscht alle geerbten Styles */
+  z-index: 9999;           /* Banner bleibt oben */
+  position: fixed;          /* fixiert es auf dem Bildschirm */
+  top: 0;
+  left: 0;
+  width: 100%;
+}
