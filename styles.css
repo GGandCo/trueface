@@ -1143,19 +1143,6 @@ body.dark-mode .retro-stamps {
 }
 
 #keepandroidopen,
-iframe[src*="keepandroidopen"] {
-    position: absolute !important;
-    top: 0;
-    left: 0;
-    z-index: 10;
-}
-
-body > :not(script):not(style):not(#keepandroidopen):not(iframe) {
-  position: relative;
-  z-index: 1;
-}
-
-body > :not(script):not(style):not(#keepandroidopen):not(iframe) {
-  background: rgba(255,255,255,0.09);
-  backdrop-filter: blur(26px) saturate(200%);
+#keepandroidopen * {
+  all: revert !important;
 }
