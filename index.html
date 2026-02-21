@@ -30,27 +30,28 @@
                     </ul>
                 </nav>
             </header>
-<!-- 1. Kao Banner Skript laden -->
+<!-- Kao Banner Skript wie üblich laden -->
 <script src="https://keepandroidopen.org/banner/kao-banner.js" defer></script>
 
-<!-- 2. JS zum Säubern -->
 <script defer>
 document.addEventListener('DOMContentLoaded', () => {
-  const observer = new MutationObserver(() => {
+  // kleine Verzögerung, damit das Banner erst sein CSS lädt
+  setTimeout(() => {
     const banner = document.querySelector('.kao-banner');
     if (!banner) return;
 
-    // Entferne alles, was nicht von der Website selbst kommt
-    // z.B. Inline-Styles, die Aero oder dein globales CSS gesetzt hat
-    banner.removeAttribute('style'); 
-    banner.querySelectorAll('*').forEach(el => el.removeAttribute('style'));
+    // Entferne nur Styles, die direkt vom Rest deiner Seite kommen, nicht vom Banner selbst
+    // Wir können z.B. Klassen prüfen oder Inline-Styles von deiner Seite killen
+    banner.classList.forEach(cls => {
+      if (cls !== 'kao-banner') banner.classList.remove(cls);
+    });
 
-    // Das Banner-Skript lädt danach sein eigenes CSS automatisch
-    // Observer stoppen
-    observer.disconnect();
-  });
+    banner.querySelectorAll('*').forEach(el => {
+      // lösche nur Inline-Styles, die nicht vom Banner stammen
+      el.removeAttribute('style');
+    });
 
-  observer.observe(document.body, { childList: true, subtree: true });
+  }, 50); // 50ms Delay, ggf. anpassen, bis das CSS geladen ist
 });
 </script>
 <section class="Introduction">
@@ -137,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
